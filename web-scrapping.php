@@ -12,7 +12,7 @@
     $drain2_array = getPredictedValues(4, $drain2_prediction);
     $drain3_array = getPredictedValues(4, $drain3_prediction);
 
-    $drains_predictions = array($drain1_array,$drain3_array, $drain2_array);
+    $drains_predictions = array($drain1_array, $drain2_array, $drain3_array);
 
     $forecast_doc = new DOMDocument();
 
@@ -50,15 +50,16 @@
         for($i = 0; $i < 4; $i++) { //forecast array
             if (isDataExists($forecast_array[$i]->time, $forecast_array[$i]->date)) {
                 echo "Data already exists!";
-                //print_r($forecast_array[$i]);
-                //echo "<br/>";
-                updateWaterLevel($predictions[$count], $forecast_array[$i]->time, $forecast_array[$i]->date,$i);
+                print_r($forecast_array[$i]);
+                echo "<br/>";
+                //print_r($predictions);
+                //updateWaterLevel($predictions[$count], $forecast_array[$i]->time, $forecast_array[$i]->date, $i);
                 updateIntensity($forecast_array[$i]->precipitation);
                
-                for($j = 1; $j < 3; $j++) {
-                    print_r($forecast_array[$j]);
-                    echo "<br/>";
-      
+                for($j = 1; $j < 4; $j++) {
+                    //print_r($forecast_array[$j]);
+                    //echo "<br/>";
+                    updateWaterLevel($predictions[$count], $forecast_array[$i]->time, $forecast_array[$i]->date, $j);
                     $count++;
                 }
             } else {
@@ -69,31 +70,6 @@
                 }
             }
         }
-
-        // for($x =0; $x<3;++){
-        //     for($i = 0; $i < 4; $i++) { //forecast array
-        //             if (isDataExists($forecast_array[$i]->time, $forecast_array[$i]->date)) {
-        //                 echo "Data already exists!";
-        //                 //print_r($forecast_array[$i]);
-        //                 //echo "<br/>";
-        //                 echo 'Water Level: '.$predictions[$count];
-        
-        //                 updateWaterLevel($predictions[$count], $forecast_array[$i]->time, $forecast_array[$i]->date,);
-        //                 updateIntensity($forecast_array[$i]->precipitation);
-        //                 for($j = 1; $j < 3; $j++) {
-        //                     print_r($forecast_array[$j]);
-        //                     echo "<br/>";
-        //                     $count++;
-        //                 }
-        //             } else {
-        //                 for($j = 0; $j < 3; $j++) {
-        //                     // insertSQL($forecast_array[$i], $j + 1, $predictions[$count]);
-        //                     insertSQL($forecast_array[$i], $j + 1);
-        //                     $count++;
-        //                 }
-        //             }
-        //         }
-        // }
     }
 
     /**
@@ -205,6 +181,9 @@
         $update = "UPDATE rainfall SET water_level = '$water_level' WHERE forecast_time = '$ftime' AND date LIKE '%$newdate%' AND drain_id = '$drainid'";
         mysqli_query($conn, $update);
     }
+
+    // updateWaterLevel(0.1, whatever, whatever, 1);
+    // updateWaterLevel(0.545, whatever, whatever, 2);
 
     /**
      * Selecting all data from rainfall and creating array of objects with result

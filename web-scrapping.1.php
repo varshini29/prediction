@@ -7,7 +7,7 @@
     $drain1_prediction = file_get_contents('C:\Users\varsh\Documents\Applied-Computing\Dissertation\WEKA\ANN\drain1.txt');
     $drain2_prediction = file_get_contents('C:\Users\varsh\Documents\Applied-Computing\Dissertation\WEKA\ANN\drain2.txt');
     $drain3_prediction = file_get_contents('C:\Users\varsh\Documents\Applied-Computing\Dissertation\WEKA\ANN\drain3.txt');
-
+    
     $drain1_array = getPredictedValues(4, $drain1_prediction);
     $drain2_array = getPredictedValues(4, $drain2_prediction);
     $drain3_array = getPredictedValues(4, $drain3_prediction);
@@ -29,25 +29,22 @@
 
         $time = getItems($time_row);
         $precipitation = getItems($precipitation_row); 
-
         
         /*
             $forecast_array retrieve rainfall intensity from url
         */
         $forecast_array = createForecastObject($time, $precipitation, 4); 
 
-        //$allData_array = selectAllData();  //retrieve all existing data from database.
-
-        print_r($forecast_array);
-        echo'</br></br>';
-
+    
+       // print_r($forecast_array);
+        //echo'</br> Time: '.$forecast_array[0]->time.'</br>';
+        //echo'</br> Date: '.$forecast_array[0]->date.'</br>';
        // print_r($allData_array);
 
        updateForecast(); //update all previous value in db base on current time and current date where status is active
-        
-    
 
         // print_r($drain1_array[0]);
+
         // echo'</br>';
         // print_r($drain2_array[0]);
         // echo'</br>';
@@ -55,13 +52,31 @@
         // echo'</br>';
 
         //drain 1
-        UpdateDrain(1,$drain1_array[0],$forecast_array);
-
+        if(sizeof($drain1_array[0])===4)
+        {
+            UpdateDrain(1,$drain1_array[0],$forecast_array);
+        }else
+        {
+            echo '</br>Error In File: draint1.txt. More or Less than 4 Values have been detected.</br>';
+        }
+        
         //drain 2
-       UpdateDrain(2,$drain2_array[0],$forecast_array);
+        if(sizeof($drain2_array[0])===4)
+        {
+            UpdateDrain(2,$drain2_array[0],$forecast_array);
+        }else
+        {
+            echo '</br>Error In File: draint2.txt. More or Less than 4 Values have been detected.</br>';
+        }
 
         //drain 3
-       UpdateDrain(3,$drain3_array[0],$forecast_array);
+        if(sizeof($drain3_array[0])===4)
+        {
+            UpdateDrain(3,$drain3_array[0],$forecast_array);
+        }else
+        {
+            echo '</br>Error In File: draint3.txt. More or Less than 4 Values have been detected.</br>';
+        }
 
     }
 
@@ -98,16 +113,10 @@
         return $forecast_array;
     }
 
-    /**
-     * Insert object (Time, Precipitation) into MySQL Table
-     * @param object $object
-     * @return void
-     */
   
-
      /**
      * Update all the status that are active to inactive
-     * @return void
+     * 
      */
     function updateStatus() {
         global $conn;
@@ -124,32 +133,30 @@
         return $now->format('d/m/Y H:i');
     }
 
-    /**
-     * Check if object to be inserted already exists in database
-     * To prevent duplicate data
-     * @param string $ftime
-     * @param string $date
-     * @return boolean
-     */
-   
-
-    /**
-     * Update forecast table setting status to inactive based on forecast time and date
-     * @param int $ftime
-     * @param string $date
-     * @return void
-     */
+    
 
     function updateForecast() {
         global $conn;
     //    // $sql = "UPDATE rainfall SET status = 'inactive'
     //     WHERE forecast_time = '$ftime' AND date = '$date'";
 
-      $sql=" UPDATE rainfall 
+    /*
+    $sql=" UPDATE rainfall 
+            SET status = 'inactive' 
+            WHERE TIME_FORMAT(CAST(forecast_time AS TIME),'%H:%i') <=TIME_FORMAT(NOW(),'%H:%i')
+            AND DATE_FORMAT(STR_TO_DATE(date,'%d/%m/%Y %H:%i'), '%d/%m/%Y') <= DATE_FORMAT(NOW(),'%d/%m/%Y')
+            AND status = 'active'";
+
+            Select * From rainfall
+            WHERE DATE_FORMAT(STR_TO_DATE(date,'%d/%m/%Y %H:%i'), '%d/%m/%Y %H:%i') <= DATE_FORMAT(NOW(),'%d/%m/%Y %H:%i')
+            AND status = 'active'
+    */
+      $sql="UPDATE rainfall 
+
                 SET status = 'inactive' 
-             WHERE TIME_FORMAT(CAST(forecast_time AS TIME),'%H:%i') <=TIME_FORMAT(NOW(),'%H:%i')
-             AND DATE_FORMAT(STR_TO_DATE(date,'%d/%m/%Y %H:%i'), '%d/%m/%Y') <= DATE_FORMAT(NOW(),'%d/%m/%Y')
-             AND status = 'active'";
+
+            WHERE DATE_FORMAT(STR_TO_DATE(date,'%d/%m/%Y %H:%i'), '%d/%m/%Y %H:%i') <= DATE_FORMAT(NOW(),'%d/%m/%Y %H:%i')
+            AND status = 'active'";
 
         mysqli_query($conn, $sql);
         
@@ -157,60 +164,31 @@
 
     /**
      * Updating records and insertion of water level
-     * @param int $water_level
-     * @return void
      */
     function updateWaterLevel($water_level, $ftime, $date, $drainid) {
         global $conn;
+        //echo 'Water Level:'.$water_level.' Time:'.$ftime.' Date:'.$date.' Drain ID:'.$drainid.'</br>';
         $newdate = str_split($date, 10)[0];
         $update = "UPDATE rainfall SET water_level = '$water_level' WHERE forecast_time = '$ftime' AND date LIKE '%$newdate%' AND drain_id = '$drainid'";
         mysqli_query($conn, $update);
     }
 
+   
     /**
-     * Selecting all data from rainfall and creating array of objects with result
-     * @return array
-     */
-    function selectAllData() {
-        global $conn;
-        $array = array();
-        $query = "SELECT * FROM rainfall";
-        $result = mysqli_query($conn, $query);
-
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $object = (object) [
-                    'time' => $row['forecast_time'],
-                    'precipitation' => $row['rainfall_intensity'],
-                    'date' => $row['date']
-                ];
-                array_push($array, $object);
-            }
-        } else {
-            echo 'No data';
-        }
-        return $array;
-    }
-
-    /**
-     * Updating all the forecast intensity with latest values from api endpoint
-     * @param int $intensity
-     * @return void
-     */
+     * Updating all the forecast intensity with latest values from api endpoint*/
   
-
     function UpdateDrain($drain,$array,$forecast_array)
     {
-        $index=0;
+      
+         $index=0;
         foreach($array as $value)
         {
-                echo'Time:'.$forecast_array[$index]->time.' Date:'. $forecast_array[$index]->date.'</br>';
-
+                //echo'Time:'.$forecast_array[0]->time.' Date:'. $forecast_array[0]->date.'</br>';
                 if (isDataExists($forecast_array[$index]->time)) 
                 {
-                    echo "Data already exists!";
-                    updateWaterLevel($value, $forecast_array[$index]->time, $forecast_array[$index]->date,$drain);
-                    updateIntensity($forecast_array[$index]->precipitation,$forecast_array[$index]->time);
+                   echo "</br> Data already exists! </br>";
+                   updateWaterLevel($value, $forecast_array[$index]->time, $forecast_array[$index]->date,$drain);
+                   updateIntensity($forecast_array[$index]->precipitation,$forecast_array[$index]->time);
                     for($j = 1; $j < 3; $j++) 
                     {
                         print_r($forecast_array[$j]);
@@ -222,11 +200,11 @@
                     for($j = 0; $j < 3; $j++) 
                     {
                         // insertSQL($forecast_array[$i], $j + 1, $predictions[$count]);
-                        insertSQL($forecast_array[$index], $j + 1);
+                        InsertSQL($forecast_array[$index], $j + 1);
                     }
                 }
            $index++;
-        }
+       }
     }
 
 /*The following are functions used in data manipulations */
@@ -253,12 +231,13 @@
         $current_date = getCurrentDate();
         $sql_drain1 = "INSERT INTO rainfall (forecast_time,rainfall_intensity, status, date, water_level , drain_id) VALUES ('$object->time', '$object->precipitation', 'active', '$current_date', 0 ,$drain_id)";
         mysqli_query($conn, $sql_drain1);
-        echo "Data added!";
+        echo "</br> Data added! </br>";
     }
 
     function updateIntensity($intensity,$ftime) {
         global $conn;
         
+       // echo 'Intensity'.$intensity.' Time:'.$ftime.'</br>';
         $update = "UPDATE rainfall SET rainfall_intensity ='$intensity'
         WHERE forecast_time = '$ftime'  
         AND DATE_FORMAT(STR_TO_DATE(date,'%d/%m/%Y %H:%i'), '%d/%m/%Y') <= DATE_FORMAT(NOW(),'%d/%m/%Y') 
