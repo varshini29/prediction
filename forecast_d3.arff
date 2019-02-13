@@ -1,0 +1,13 @@
+@RELATION drain3
+
+@ATTRIBUTE forecasted_rainfall_intensiy numeric
+@ATTRIBUTE depth_of_drain numeric
+@ATTRIBUTE peak_discharge numeric
+@ATTRIBUTE drainage_capacity numeric
+@ATTRIBUTE water_level numeric
+
+@DATA
+0.3,4.79,0.201,186.14,?
+0.2,4.79,0.134,186.14,?
+0.3,4.79,0.201,186.14,?
+0.3,4.79,0.201,186.14,?

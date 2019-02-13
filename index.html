@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+
+	<title>Urban Drainage Monitoring</title>
+
+	<!-- Loading third party fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+	<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<!-- Loading main css file -->
+	<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+	<div class="site-content">
+		<div class="site-header">
+			<div class="container">
+				<a href="index.html" class="branding">
+					<img src="images/logo.png" alt="" class="logo">
+					<div class="logo-type">
+						<h1 class="site-title">University of Mauritius</h1>
+						<small class="site-description">Urban Drainage Monitoring</small>
+					</div>
+				</a>
+
+				<!-- Default snippet for navigation -->
+				<div class="main-navigation">
+					<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+					<ul class="menu">
+						<li class="menu-item current-menu-item"><a href="index.html">Home</a></li>
+						<li class="menu-item"><a href="drain1.php">Drain 1</a></li>
+						<li class="menu-item"><a href="drain2.php">Drain 2</a></li>
+						<li class="menu-item"><a href="drain3.php">Drain 3</a></li>
+						<li class="menu-item"><a href="last24.html">History Data</a></li>
+						<li class="menu-item"><a href="flood.html">Flood Case Scenario</a></li>
+					</ul> <!-- .menu -->
+				</div> <!-- .main-navigation -->
+
+				<div class="mobile-navigation"></div>
+
+			</div>
+		</div>
+		<!-- .site-header -->
+		<div class="slideshow-container">
+			<div class="mySlides fade">
+				<img src="images/drain1.png" style="width:100%" id="d1">
+				<div id='d1_text'> DR AG Jeetoo Hospital(civil) Drain<br>Ruisseaux du Pouce</br>Depth: 3.0ft <br>Width: 8.0ft <br>Length:
+					50.0ft</div>
+				<div class="text">Drain 1</div>
+			</div>
+
+			<div class="mySlides fade">
+				<img src="images/drain2.png" style="width:100%">
+				<div class="text">Drain 2</div>
+			</div>
+
+			<div class="mySlides fade">
+				<img src="images/drain3.png" style="width:100%">
+				<div class="text">Drain 3</div>
+			</div>
+
+			<!-- Next and previous buttons -->
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+		<br>
+
+		<!-- The dots/circles -->
+		<div style="text-align:center">
+			<span class="dot" onclick="currentSlide(1)"></span>
+			<span class="dot" onclick="currentSlide(2)"></span>
+			<span class="dot" onclick="currentSlide(3)"></span>
+		</div>
+
+		<h2 style="padding:100px;color:white;font-size:32px;">Port-Louis Water Level Forecast</h2>
+		<main class="main-content">
+			<div class="fullwidth-block">
+				<div class="forecast-table">
+					<div class="container">
+						<div class="forecast-container">
+							<div class="today forecast">
+								<div class="forecast-header">
+									<div class="day">Today</div>
+
+								</div>
+								<div class="degree">
+									<div class="num" style="font-size:40px; color:white;" id="ct"></div>
+
+								</div>
+							</div>
+
+							<div class="forecast">
+								<div class="forecast-header">
+									<div class="day" style="font-weight: bold;color:white;font-size: 22px;">Drain 1</div>
+								</div> <!-- .forecast-header-->
+								<div class="forecast-content">
+
+									<span><img src="images/icon-umberella@2x.png" alt="">Rainfall Intensity: 20%</span></br>
+									<span><img src="images/flow_rate_icon.png" style="height: 60px; width: 45px;" alt="">Flow Rate: xm/s</span></br>
+									<span><img src="images/water-level.png" style="height: 52px; width: 42px;" alt="">Water Level: xm</span>
+								</div>
+								<div class="forecast-content">
+									<a href="drain1.php"><button style="border-radius:30px;border: 2px solid rgb(128, 124, 124);font-size: 17px;">View Forecast</button></a>
+								</div>
+
+							</div>
+
+							<div class="forecast">
+								<div class="forecast-header">
+									<div class="day" style="font-weight: bold;color:white;font-size: 22px;">Drain 2</div>
+								</div> <!-- .forecast-header -->
+								<div class="forecast-content">
+									<span><img src="images/icon-umberella@2x.png" alt="">Rainfall Intensity: 20%</span></br>
+									<span><img src="images/flow_rate_icon.png" style="height: 60px; width: 45px;" alt="">Flow Rate: xm/s</span></br>
+									<span><img src="images/water-level.png" style="height: 52px; width: 42px;" alt="">Water Level: xm</span>
+								</div>
+								<div class="forecast-header">
+									<a href="drain2.html"><button style="border-radius:30px;border: 2px solid rgb(128, 124, 124);font-size: 17px;">View Forecast</button></a>
+								</div>
+							</div>
+							<div class="forecast">
+								<div class="forecast-header">
+									<div class="day" style="font-weight: bold;color:white;font-size: 22px;">Drain 3</div>
+								</div> <!-- .forecast-header-->
+								<div class="forecast-content">
+									<span><img src="images/icon-umberella@2x.png" alt="">Rainfall Intensity: 20%</span></br>
+									<span><img src="images/flow_rate_icon.png" style="height: 60px; width: 45px;" alt="">Flow Rate: xm/s</span></br>
+									<span><img src="images/water-level.png" style="height: 52px; width: 42px;" alt="">Water Level: xm</span>
+								</div>
+								<div class="forecast-header">
+									<a href="drain3.html"><button style="border-radius:30px;border: 2px solid rgb(128, 124, 124);font-size: 17px;">View Forecast</button></a>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		<footer class="site-footer">
+			<div class="container">
+				<div class="row">
+						<div class="col-md-6 col-md-offset-1">
+								<h2 class="section-title">Contact us</h2>
+								
+								<form action="#" class="contact-form">
+									<div class="row">
+										<div class="col-md-6"><input type="text" placeholder="Your name..."></div>
+										<div class="col-md-6"><input type="text" placeholder="Email Addresss..."></div>
+									</div>
+									
+									<textarea name="" placeholder="Message..."></textarea>
+									<div class="text-right">
+										<input type="submit" placeholder="Send message">
+									</div>
+								</form>
+	
+							</div>
+					
+					<!-- <div class="col-md-4">
+							<h2 class="section-title" id="history">Quick Links</h2>
+							<ul class="arrow-list">
+
+								<li><a href="last24.html">Last 24 Hours Water Level in Drain 1, Drain 2, Drain 3</a></li>
+								<li><a href="#">Last week Water Level in Drain 1</a></li>
+								<li><a href="#">Last week Water Level in Drain 2</a></li>
+								<li><a href="#">Last week Water Level in Drain 3</a></li>
+								<li><a href="#">Magni dolores eos qui ratione voluptatem sequi</a></li>
+								<li><a href="#">Neque porro quisquam est qui dolorem ipsum quia</a></li>
+							</ul>
+						</div> -->
+					</div>
+
+				<p class="colophon">Copyright 2014 Company name. Designed by Themezy. All rights reserved</p>
+			</div>
+		</footer> <!-- .site-footer -->
+	</div>
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/app.js"></script>
+
+</body>
+
+</html>

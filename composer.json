@@ -1,0 +1,6 @@
+{
+    "name": "varsh/forecast",
+    "require": {
+        "cocur/arff": "^0.2.3"
+    }
+}

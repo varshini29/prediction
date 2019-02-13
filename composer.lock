@@ -1,0 +1,57 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "eb1e8f2720d948582d1bf0eebf10820f",
+    "packages": [
+        {
+            "name": "cocur/arff",
+            "version": "v0.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cocur/arff.git",
+                "reference": "cc53e1dc35c2fbbbc5b8dcbf60d93b99a231735f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cocur/arff/zipball/cc53e1dc35c2fbbbc5b8dcbf60d93b99a231735f",
+                "reference": "cc53e1dc35c2fbbbc5b8dcbf60d93b99a231735f",
+                "shasum": ""
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "~1.5",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "6.*|~7.0",
+                "plumphp/plum": "~0.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cocur\\Arff\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Eckerstorfer",
+                    "email": "florian@eckerstorfer.net",
+                    "homepage": "https://florian.ec"
+                }
+            ],
+            "time": "2018-09-07T18:37:21+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
