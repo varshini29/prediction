@@ -1,5 +1,4 @@
 class Calendar {
-    
     constructor(id) {
         this.displayed_date = new Date()                    //date wich calendar displays now
         this.current_day    = this.displayed_date.getDate() //current world time
@@ -246,7 +245,7 @@ class Calendar {
     //handles user clicks on cells
     selectHandler(e) {
         if (e.target.classList.contains('calendar-cell-gray')) return //only days of current month can be selected
-        if (!e.target.classList.contains('calendar-cell')) return //if it was   n't a click on a cell
+        if (!e.target.classList.contains('calendar-cell')) return //if it wasn't a click on a cell
 
         let prev_selected = document.getElementById('selected_date');
     
@@ -255,13 +254,13 @@ class Calendar {
             prev_selected.id = ''
         }
 
-        this.getSelectedDate();
-
         this.selected_date = new Date(
             this.displayed_date.getFullYear(),
             this.displayed_date.getMonth(),
             e.target.innerHTML
         )
+
+        this.getSelectedDate();
 
         e.target.id = 'selected_date'
         e.target.classList.add('calendar-cell-selected')
@@ -271,9 +270,24 @@ class Calendar {
      * @description Getting selected value on user click
      */
     getSelectedDate() {
-        console.log(this.selected_date);
-        // $.ajax({
-        //   url  
-        // })
+        let d = new Date(this.selected_date);
+        let month = ("0" + (d.getMonth() + 1)).slice(-2);
+        let year = d.getFullYear();
+        let day = d.getDate();
+        let date = day + '/' + month + '/' + year;
+        
+        jQuery.ajax({
+            type: "POST",
+            url: 'testjsphp.php',
+            data: {
+                arguments: [date]
+            },
+            success: ((result) => {
+                alert(result);
+            }),
+            error: ((error) => {
+                console.error(error);
+            })
+        })
     }
 }
