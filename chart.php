@@ -1,11 +1,20 @@
 <?php
 	include ('dbconnect.php');
-	$rainfall = '';
-	$time = '';
-	$waterlevel='';
-
+	include ('date.php');
+	
+	
+	 getLastDay();
+                        
+    function getLastDay() {
+		$rainfall = '';
+		$time = '';
+		$waterlevel='';
+		global $conn;
+                                        
+        $starting_day = getPreviousDays('1 day ago'); // 29/01/2019 14:48
+        $ending_day = getCurrentDate(); // 30/01/2019 14:48
 	//query to get data from the table
-	$sql = "SELECT rainfall_intensity, forecast_time, water_level FROM rainfall WHERE status = 'inactive' AND drain_id = 1 ";
+	$sql = "SELECT rainfall_intensity, forecast_time, water_level FROM rainfall WHERE date BETWEEN '$starting_day'AND '$ending_day' AND status = 'inactive'AND drain_id = 1 ORDER BY forecast_time ";
     $result = mysqli_query($conn, $sql);
 
 	//loop through the returned data
@@ -19,6 +28,7 @@
 	$rainfall = trim($rainfall,",");
 	$time = trim($time,",");
 	$waterlevel = trim($waterlevel,",");
+}
 ?>
 
 <!DOCTYPE html>

@@ -66,12 +66,12 @@ include ('date.php');
 			</div> <!-- .site-header -->
 
 			<main class="main-content">
-				<div class="container">
+				<!-- <div class="container">
 					<div class="breadcrumb">
 						<a href="index.html">Home</a>
 						<span>Last 24 Hours</span>
 					</div>
-				</div>
+				</div> -->
                 
 				<div class="fullwidth-block">
 					<div class="container">
@@ -79,21 +79,23 @@ include ('date.php');
 							<div class="content col-md-8">
 								<div class="post">
 									<h2 class="entry-title">Drain 1</h2>
-									<table>
-										<tr>
-                                            <th>Time(hour)</th>
-											<th>Rainfall Intensity(mm)</th>
-											<th>Depth(ft)</th>
-											<th>Water Level(ft)</th>
-										</tr>
-                                    <?php
+									<table class= "forecast-table">
+									<?php
                                         getLastDay();
                         
                                         function getLastDay() {
 											global $conn;
                                         
                                             $starting_day = getPreviousDays('1 day ago'); // 29/01/2019 14:48
-                                            $ending_day = getCurrentDate(); // 30/01/2019 14:48
+											$ending_day = getCurrentDate(); // 30/01/2019 14:48
+											?>
+										<tr  class="day">
+                                            <th>Time(hour)</th>
+											<th>Rainfall Intensity(mm)</th>
+											<th>Depth(ft)</th>
+											<th>Water Level(ft)</th>
+										</tr>
+											<?php
                                 
 											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 1 ORDER BY forecast_time";
                                             $result = mysqli_query($conn, $query);
@@ -101,7 +103,7 @@ include ('date.php');
                                             if (mysqli_num_rows($result) > 0) {
                                                 while ($row = mysqli_fetch_assoc($result)) {
 													?>
-													<tr>
+													<tr class="num" style="font-size:15px; color:white;">
 														<td><?php echo $row['forecast_time']?></td>
 														<td><?php echo $row['rainfall_intensity']?></td>
 														<td>3</td>
@@ -112,7 +114,7 @@ include ('date.php');
                                             } else {
                                                 echo 'No result!';
                                             }
-                                        }
+                                        
                                         ?>
 										</table>
 								</div>
@@ -121,17 +123,30 @@ include ('date.php');
 									<h2 class="entry-title">Drain 2</h2>
 									<table>
 											<tr>
-												<th>Time(hour)</td>
-												<th>Rainfall Intensity(mm)</td>
-												<th>Depth(ft)</td>
-												<th>Water Level(ft)</td>
+												<th>Time(hour)</th>
+												<th>Rainfall Intensity(mm)</th>
+												<th>Depth(ft)</th>
+												<th>Water Level(ft)</th>
 											</tr>
-											<tr>
-												<td>x</td>
-												<td>x</td>
-												<td>x</td>
-												<td>x</td>
-											</tr>
+											<?php
+											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 2 ORDER BY forecast_time";
+                                            $result = mysqli_query($conn, $query);
+                                            
+                                            if (mysqli_num_rows($result) > 0) {
+                                                while ($row = mysqli_fetch_assoc($result)) {
+													?>
+													<tr>
+														<td><?php echo $row['forecast_time']?></td>
+														<td><?php echo $row['rainfall_intensity']?></td>
+														<td>7.22</td>
+														<td><?php echo $row['water_level']?></td>
+												</tr>
+												<?php	}
+                                            } else {
+                                                echo 'No result!';
+                                            }
+                                        
+                                        ?>
 											</table>
 								</div>
 
@@ -144,12 +159,25 @@ include ('date.php');
 												<th>Depth(ft)</td>
 												<th>Water Level(ft)</td>
 											</tr>
-											<tr>
-												<td>x</td>
-												<td>x</td>
-												<td>x</td>
-												<td>x</td>
-											</tr>
+											<?php
+											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 3 ORDER BY forecast_time";
+                                            $result = mysqli_query($conn, $query);
+                                            
+                                            if (mysqli_num_rows($result) > 0) {
+                                                while ($row = mysqli_fetch_assoc($result)) {
+													?>
+													<tr>
+														<td><?php echo $row['forecast_time']?></td>
+														<td><?php echo $row['rainfall_intensity']?></td>
+														<td>4.79</td>
+														<td><?php echo $row['water_level']?></td>
+												</tr>
+												<?php	}
+                                            } else {
+                                                echo 'No result!';
+                                            }
+                                        }
+											?>
 											</table>
 								</div>
 							</div>

@@ -41,6 +41,7 @@
             }
         );
      
+        print_r($difference_array);
 
        foreach($difference_array as $object) {
            updateForecast($object->time, $object->date);
@@ -52,19 +53,14 @@
                 echo "Data already exists!";
                 print_r($forecast_array[$i]);
                 echo "<br/>";
-                //print_r($predictions);
-                //updateWaterLevel($predictions[$count], $forecast_array[$i]->time, $forecast_array[$i]->date, $i);
-                updateIntensity($forecast_array[$i]->precipitation);
+                updateIntensity($forecast_array[$i]->precipitation, $forecast_array[$i]->time, $forecast_array[$i]->date);
                
                 for($j = 1; $j < 4; $j++) {
-                    //print_r($forecast_array[$j]);
-                    //echo "<br/>";
                     updateWaterLevel($predictions[$count], $forecast_array[$i]->time, $forecast_array[$i]->date, $j);
                     $count++;
                 }
             } else {
                 for($j = 0; $j < 3; $j++) {
-                    // insertSQL($forecast_array[$i], $j + 1, $predictions[$count]);
                     insertSQL($forecast_array[$i], $j + 1);
                     $count++;
                 }
@@ -108,6 +104,7 @@
     /**
      * Insert object (Time, Precipitation) into MySQL Table
      * @param object $object
+     * @param int $drain_id
      * @return void
      */
     function insertSQL($object, $drain_id) {
@@ -173,6 +170,9 @@
     /**
      * Updating records and insertion of water level
      * @param int $water_level
+     * @param string $ftime
+     * @param string $date
+     * @param int $drainid
      * @return void
      */
     function updateWaterLevel($water_level, $ftime, $date, $drainid) {
@@ -181,9 +181,6 @@
         $update = "UPDATE rainfall SET water_level = '$water_level' WHERE forecast_time = '$ftime' AND date LIKE '%$newdate%' AND drain_id = '$drainid'";
         mysqli_query($conn, $update);
     }
-
-    // updateWaterLevel(0.1, whatever, whatever, 1);
-    // updateWaterLevel(0.545, whatever, whatever, 2);
 
     /**
      * Selecting all data from rainfall and creating array of objects with result
@@ -213,11 +210,14 @@
     /**
      * Updating all the forecast intensity with latest values from api endpoint
      * @param int $intensity
+     * @param string $ftime
+     * @param string $date
      * @return void
      */
-    function updateIntensity($intensity) {
+    function updateIntensity($intensity, $ftime, $date) {
         global $conn;
-        $update = "UPDATE rainfall SET rainfall_intensity ='$intensity'";
+        $newdate = str_split($date, 10)[0];
+        $update = "UPDATE rainfall SET rainfall_intensity ='$intensity' WHERE forecast_time = '$ftime' AND date LIKE '%$newdate%'";
         mysqli_query($conn, $update);
     }
 
