@@ -19,8 +19,8 @@ function getData($drainid) {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
+<!-- <!DOCTYPE html> -->
+<!-- <html>
 	<head>
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type="text/javascript" src="js/Chart.bundle.min.js"></script>
@@ -101,4 +101,4 @@ function getData($drainid) {
 	    </div>
 	    
 	</body>
-</html>
+</html> -->

@@ -1,0 +1,34 @@
+/* Global */
+
+.w-100 {
+    width: 100% !important;
+}
+
+.ml-0 {
+    margin-left: 0 !important;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.pb-0 {
+    padding-bottom: 0;
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.border-none {
+    border: 0 !important;
+}
+
+/* Last 24 hours (last24.php) */
+table.forecast-table {
+    background: #323544;
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-right: 3rem;
+}
