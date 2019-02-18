@@ -133,7 +133,7 @@ function getData($drainid) {
 				</div>
 			</div> <!-- .site-header -->
 
-			<main class="main-content">
+			<main id="last24" class="main-content">
 				<div class="container">
 					<div class="breadcrumb">
 						<a href="index.html">Home</a>
@@ -144,8 +144,9 @@ function getData($drainid) {
 				<div class="fullwidth-block">
 					<div class="container">
 						<div class="row">
-							<div class="content col-lg-12">
-								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 50px;">
+						<h1>Last 24 Hours Data</h1>
+							<div class="content col-lg-12 p-0">
+								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0 25px 0;">
 									<h2 class="entry-title">Drain 1</h2>
 									<div class="post col-lg-6 p-0 border-none">
 										<table class= "forecast-table">
@@ -189,7 +190,7 @@ function getData($drainid) {
 									</div>
 									<div class="post col-lg-6 p-0 border-none">
 										<div class="position-relative">
-											<canvas id="chart-drain1" style="background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
+											<canvas id="chart-drain1" style="background: #222; border: 1px solid #555652;"></canvas>
 										</div>
 									<?php 
 			
@@ -213,7 +214,7 @@ function getData($drainid) {
 									</div>
 								</div>
 
-								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 50px;">
+								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0 25px 0;">
 									<h2 class="entry-title">Drain 2</h2>
 									<div class="post col-lg-6 p-0 border-none">
 										<table class= "forecast-table">
@@ -257,7 +258,7 @@ function getData($drainid) {
 									
 									<div class="post col-lg-6 p-0 border-none">
 										<div class="position-relative">
-											<canvas id="chart-drain2" style="background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
+											<canvas id="chart-drain2" style="background: #222; border: 1px solid #555652;"></canvas>
 										</div>
 									<?php 
 			
@@ -282,7 +283,7 @@ function getData($drainid) {
 
 								</div>
 
-								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 50px;">
+								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0 25px 0;">
 									<h2 class="entry-title">Drain 3</h2>
 									<div class="post col-lg-6 p-0 border-none">
 										<table class= "forecast-table">
@@ -326,7 +327,7 @@ function getData($drainid) {
 									
 									<div class="post col-lg-6 p-0 border-none">
 										<div class="position-relative">
-											<canvas id="chart-drain3" style="background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
+											<canvas id="chart-drain3" style="background: #222; border: 1px solid #555652;"></canvas>
 										</div>
 									<?php 
 			
