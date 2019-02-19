@@ -66,8 +66,8 @@ include ("dbconnect.php");
 							<li class="menu-item current-menu-item"><a href="drain1.php">Drain1</a></li>
 							<li class="menu-item"><a href="drain2.php">Drain 2</a></li>
 							<li class="menu-item"><a href="drain3.php">Drain 3</a></li>
-							<li class="menu-item"><a href="last24.html">History Data</a></li>
-							<li class="menu-item"><a href="admin.html">Admin</a></li>
+							<li class="menu-item"><a href="last24.php">History Data</a></li>
+							<li class="menu-item"><a href="flood.html">Flood Case Scenario</a></li>
 							</ul> <!-- .menu -->
 						</div> <!-- .main-navigation -->
 					</div>

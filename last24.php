@@ -124,7 +124,7 @@ function getData($drainid) {
 							<li class="menu-item"><a href="drain2.php">Drain 2</a></li>
 							<li class="menu-item"><a href="drain3.php">Drain 3</a></li>
 							<li class="menu-item  current-menu-item"><a href="">History Data</a></li>
-							<li class="menu-item"><a href="admin.html">Admin</a></li>
+							<li class="menu-item"><a href="flood.html">Flood Case Scenario</a></li>
 						</ul> <!-- .menu -->
 					</div> <!-- .main-navigation -->
 
@@ -166,8 +166,9 @@ function getData($drainid) {
 											</tr>
 											<?php
 								
-											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 1 ORDER BY forecast_time";
+											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 1 AND status = 'inactive'";
 											$result = mysqli_query($conn, $query);
+											//print_r($result);
 											
 											if (mysqli_num_rows($result) > 0) {
 												while ($row = mysqli_fetch_assoc($result)) {
@@ -234,7 +235,7 @@ function getData($drainid) {
 											</tr>
 											<?php
 								
-											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 2 ORDER BY forecast_time";
+											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 2 AND status = 'inactive'";
 											$result = mysqli_query($conn, $query);
 											
 											if (mysqli_num_rows($result) > 0) {
@@ -303,7 +304,7 @@ function getData($drainid) {
 											</tr>
 											<?php
 								
-											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 3 ORDER BY forecast_time";
+											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 3 AND status = 'inactive'";
 											$result = mysqli_query($conn, $query);
 											
 											if (mysqli_num_rows($result) > 0) {
