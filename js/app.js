@@ -82,3 +82,35 @@ var displaydate = function () {
 function refreshtime() {
 	setTimeout(displaydate, 60*1000);
 }
+
+function displayDate(id) {
+	var date = new Date();
+	let year = date.getFullYear();
+	let month = date.getMonth();
+	let months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+	let d = date.getDate();
+	let day = date.getDay();
+	let days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+
+	let br = document.createElement('br');
+	
+	let h = date.getHours();
+	if (h < 10) {
+		h = "0" + h;
+	}
+
+	let m = date.getMinutes();
+	if (m < 10) {
+		m = "0" + m;
+	}
+
+	let s = date.getSeconds();
+	if (s < 10) {
+		s = "0" + s;
+	}
+
+	//let result = ''+ days[day]+ ' ' + months[month] + ' ' + d + ' ' + year + ' ' + h + ':' + m + ':' + s;
+	let result = ''+ days[day] + "<br/>" + months[month] + ', ' + d + ' ' + year + "<br/>" + h + ':' + m + ':' + s;
+	document.getElementById(id).innerHTML = result;
+	setTimeout('displayDate("'+id+'");','1000');
+}
