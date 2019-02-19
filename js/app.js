@@ -74,7 +74,7 @@ var displaydate = function () {
 	var x = new Date()
 
 	var x1 = x.getDate() + "/" + x.getMonth() + 1 + "/" + x.getFullYear();
-	x1 = x1 + " - " + x.getHours() + ":" + x.getMinutes();
+	x1 = x1 + " - " + x.getHours() + ":" + ("0" + x.getMinutes()).substr(-2);
 	document.getElementById('ct').innerHTML = x1;
 	refreshtime();
 }();
