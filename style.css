@@ -2211,7 +2211,7 @@ form input[type="reset"] {
   height: auto;
 }
 
-/* .breadcrumb {
+.breadcrumb {
   background: #262936;
   border-radius: 40px;
   padding: 20px 30px;
@@ -2239,7 +2239,7 @@ form input[type="reset"] {
 
 .breadcrumb span {
   color: white;
-} */
+}
 
 .post {
   padding: 50px 0;

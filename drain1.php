@@ -9,14 +9,17 @@ include ("dbconnect.php");
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 		
-		<title>Urban Drainage Monitoring</title>
+		<title>Drain 1</title>
 
 		<!-- Loading third party fonts -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
 		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 		<!-- Loading main css file -->
 		<link rel="stylesheet" href="style.css">
+
+		<link rel="stylesheet" href="styles/css/custom.css">
 
 		<script type="text/javascript"> 
 		function refreshtime(){
@@ -46,7 +49,6 @@ include ("dbconnect.php");
 
 
 	<body onload="displaydate()">
-		
 		<div class="site-content">
 			<div class="site-header">
 				<div class="container">
@@ -55,8 +57,8 @@ include ("dbconnect.php");
 						<div class="logo-type">
 							<h1 class="site-title">University of Mauritius</h1>
 							<small class="site-description">Urban Drainage Monitoring</small>
-							</div>
-						</a>
+						</div>
+					</a>
 
 					<!-- Default snippet for navigation -->
 					<div class="main-navigation">
@@ -68,123 +70,132 @@ include ("dbconnect.php");
 							<li class="menu-item"><a href="drain3.php">Drain 3</a></li>
 							<li class="menu-item"><a href="last24.php">History Data</a></li>
 							<li class="menu-item"><a href="flood.html">Flood Case Scenario</a></li>
-							</ul> <!-- .menu -->
-						</div> <!-- .main-navigation -->
-					</div>
-				</div> <!-- .site-header -->
+						</ul> <!-- .menu -->
+					</div> <!-- .main-navigation -->
+				</div>
+			</div> <!-- .site-header -->
 
 			<!--map to put here-->
-			<div class="hero" data-bg-image="images/drain1.png" ></div>
+			<div class="hero" data-bg-image="images/drain1.png"></div>
 			
-			<h2 style="padding:100px;color:white;font-size:32px;">Drain 1 Water Level Forecast</h2>
-				<main class="main-content">
-				<div class="fullwidth-block">
-                    <div class="forecast-table">
-					<div class="container">
-						<div class="forecast-container">
-							<?php
-								$sql = "SELECT * FROM rainfall WHERE status = 'active' AND drain_id = 1 ORDER BY forecast_time ";
-								$result = mysqli_query($conn, $sql);
+			<div class="container">
+				<div class="col-lg-12 py-4">
+					<h2 class="m-0" style="color:white;font-size:32px;">Drain 1 Water Level Forecast</h2>
+				</div>
+			</div>
 
-								$data = array();
-								if (mysqli_num_rows($result) > 0) {
-									 while($row = mysqli_fetch_assoc($result)) {
-										 //$dat = $row;
-										 array_push($data, $row);
-									 }
-
-							?>
-							<div class="today forecast"style="width:300px;">
-								<div class="forecast-header">
-									<div class="day">Time (in hour)</div>
-									<div class="date" id="" style="text-align: center"></div><!--this is for display date and time will need this-->
-								</div>
-									<div class="degree">
-										<div class="num" style="font-size:15px; color:white;" id="">
-											<?php
-												
-												foreach($data as $object) {
-													echo "<div>" . $object["forecast_time"] . "</div>";
-												}
-								
-											?>
+			<section id="drain1">
+				<div class="container pb-4">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="forecast-table">
+								<div class="forecast-container m-0">
+									<?php
+										$sql = "SELECT * FROM rainfall WHERE status = 'active' AND drain_id = 1 ORDER BY forecast_time ";
+										$result = mysqli_query($conn, $sql);
+	
+										$data = array();
+										if (mysqli_num_rows($result) > 0) {
+											while($row = mysqli_fetch_assoc($result)) {
+												//$dat = $row;
+												array_push($data, $row);
+											}
+	
+									?>
+	
+									<div class="forecast">
+										<div class="forecast-header">
+											<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Time (in hour)</div>
+											<div class="date" id="" style="text-align: center"></div><!--this is for display date and time will need this-->
+										</div>
+										<div class="forecast-content">
+												<?php
+													
+													foreach($data as $object) {
+														echo "<div>" . $object["forecast_time"] . "</div>";
+													}
+									
+												?>
 										</div>
 									</div>
-							</div>
-						
-							<div class="forecast">
-								<div class="forecast-header">
-									<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Rainfall Intensity(mm)</div>
-								</div> 
-								<div class="forecast-content">
-								<?php
-										
-								foreach($data as $object) {
-									echo "<div>" . $object["rainfall_intensity"] . "</div>";
-								}
-				
-								?>
-								
-								</div>
-							</div>
-					
-							<div class="forecast">
-								<div class="forecast-header">
-									<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Depth(ft)</div>
-								</div> <!-- .forecast-header -->
-								<div class="forecast-content">
-									<span id="depth"></span></br>
-										<script>
-										var i;
-										var text="";
-										for(i=0;i<4;i++){
-											text += 3.0 + "<br>";
-										}
-										document.getElementById("depth").innerHTML = text;
-										</script>
-							
-								</div>
-							</div>
-							<div class="forecast">
-								<div class="forecast-header">
-									<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Drainage Capacity(cfs)</div>
-								</div> <!-- .forecast-header -->
-								<div class="forecast-content">
-									<span id="cap"></span></br>
-										<script>
-										var i;
-										var text="";
-										for(i=0;i<4;i++){
-											text += 64.9 + "<br>";
-										}
-										document.getElementById("cap").innerHTML = text;
-										</script>
-							
-								</div>
-							</div>
-
-							<div class="forecast">
-								<div class="forecast-header">
-									<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Water Level(ft)</div>
-								</div> <!-- .forecast-header-->
-								<div class="forecast-content">
-								<?php
-										
+	
+									<div class="forecast">
+										<div class="forecast-header">
+											<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Rainfall Intensity(mm)</div>
+										</div> 
+										<div class="forecast-content">
+										<?php
+												
 										foreach($data as $object) {
-											echo "<div>" . $object["water_level"] . "</div>";
+											echo "<div>" . $object["rainfall_intensity"] . "</div>";
 										}
-									}
 						
 										?>
+										</div>
+									</div>
+	
+	
+									<div class="forecast">
+										<div class="forecast-header">
+											<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Depth(ft)</div>
+										</div> <!-- .forecast-header -->
+										<div id="parent-forecast" class="forecast-content">
+											<!-- <div id="depth"></div></br> -->
+												<script>
+												let parent = document.getElementByid('parent-forecast');
+												for (i=0; i<4; i++) {
+													parent.createElement()
+												}
+												/*var i;
+												var text="";
+												for(i=0;i<4;i++){
+													text += 3.0 + "<br>" + ;
+												}
+												document.getElementById("depth").innerHTML = text; */
+												</script>
+										</div>
+									</div>
+	
+									<div class="forecast">
+										<div class="forecast-header">
+											<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Drainage Capacity(cfs)</div>
+										</div> <!-- .forecast-header -->
+										<div class="forecast-content">
+											<span id="cap"></span></br>
+												<script>
+												var i;
+												var text="";
+												for(i=0;i<4;i++){
+													text += 64.9 + "<br>";
+												}
+												document.getElementById("cap").innerHTML = text;
+												</script>
+										</div>
+									</div>
+	
+									<div class="forecast">
+										<div class="forecast-header">
+											<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Water Level(ft)</div>
+										</div> <!-- .forecast-header-->
+										<div class="forecast-content">
+										<?php
+												
+												foreach($data as $object) {
+													echo "<div>" . $object["water_level"] . "</div>";
+												}
+											}
+								
+												?>
+										</div>
+									</div>
+	
 								</div>
 							</div>
+						</div>
 					</div>
 				</div>
-				</div>
-					
-				</div>
+			</section>
 				
-			</main> 
 
 			<footer class="site-footer">
 					<div class="container">
@@ -205,21 +216,7 @@ include ("dbconnect.php");
 										</form>
 			
 									</div>
-							
-							<!-- <div class="col-md-4">
-									<h2 class="section-title">Quick Links</h2>
-									<ul class="arrow-list">
-
-										<li><a href="last24.html">Last 24 Hours Water Level in Drain 1, Drain 2, Drain 3</a></li>
-										<li><a href="#">Last week Water Level in Drain 1</a></li>
-										<li><a href="#">Last week Water Level in Drain 2</a></li>
-										<li><a href="#">Last week Water Level in Drain 3</a></li>
-										<li><a href="#">Magni dolores eos qui ratione voluptatem sequi</a></li>
-										<li><a href="#">Neque porro quisquam est qui dolorem ipsum quia</a></li>
-									</ul>
-								</div> -->
 							</div>
-					<p class="colophon">Copyright 2014 Company name. Designed by Themezy. All rights reserved</p>
 				</div>
 			</footer> <!-- .site-footer -->
 		</div>

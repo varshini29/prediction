@@ -1,17 +1,42 @@
 <html>
     <head>
-            <script src="js/plotly-latest.min.js"></script>
+        <script type="text/javascript" src="js/Chart.bundle.min.js"></script>
+        <script src="js/jquery-1.11.1.min.js"></script>
     </head>
     <body>
         <!--div to display the graph-->
-        <div id="tester" style="width:600px;height:250px;"></div>
+        <canvas id="line-chart" width="150" height="50"></canvas>
     </body>
     <script>
-        //   Now you can make interactive plotly.js charts using Plotly.plot()
-	TESTER = document.getElementById('tester');
-	Plotly.plot( TESTER, [{
-	x: [1, 2, 3, 4, 5],
-	y: [1, 2, 4, 8, 16] }], {
-	margin: { t: 0 } } );
+        //   Now you can make interactive plotly.js charts using Plotly.plot() 
+        new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: [35,80,150],
+    datasets: [{ 
+        data: [1.343,3.07,5.757],
+        label:"Drain 1",
+        borderColor: "#3e95cd",
+        fill: false
+      }, { 
+        data: [7.307,16.702,31.316],
+        label:"Drain 2",
+        borderColor: "#8e5ea2",
+        fill: false
+      }, { 
+        data: [0.598,1.367,2.563],
+        label:"Drain 3",
+        borderColor: "#c45850",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Rainfall intensity per mm against water level in ft'
+    }
+  }
+});
     </script>
 </html>

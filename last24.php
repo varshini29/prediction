@@ -23,7 +23,7 @@ function getData($drainid) {
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 		
-		<title>Compass Starter by Ariona, Rian</title>
+		<title>Historical Data</title>
 
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
@@ -383,21 +383,8 @@ function getData($drainid) {
 							</div>
 							<!-- END OF: Calendar -->
 						</div>
-							
-							<!-- <div class="col-md-4">
-									<h2 class="section-title" id="history">Quick Links</h2>
-									<ul class="arrow-list">
-										<li><a href="last24.html">Last 24 Hours Water Level in Drain 1, Drain 2, Drain 3</a></li>
-										<li><a href="#">Last week Water Level in Drain 1, Drain 2, Drain 3</a></li>
-										<li><a href="#">Nemo enim ipsam voluptatem quia voluptas</a></li>
-										<li><a href="#">Aspernatur aut odit aut fugit, sed quia consequuntur</a></li>
-										<li><a href="#">Magni dolores eos qui ratione voluptatem sequi</a></li>
-										<li><a href="#">Neque porro quisquam est qui dolorem ipsum quia</a></li>
-									</ul>
-								</div>-->
 							</div> 
-		
-						<p class="colophon">Copyright 2014 Company name. Designed by Themezy. All rights reserved</p>
+
 					</div>
 				</footer> <!-- .site-footer -->
 		</div>

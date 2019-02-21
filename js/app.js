@@ -70,14 +70,15 @@ function showSlides(n) {
 	slides[slideIndex - 1].style.display = "block";
 	dots[slideIndex - 1].className += " active";
 }
-var displaydate = function () {
+function displayDate() {
 	var x = new Date()
 
 	var x1 = x.getDate() + "/" + x.getMonth() + 1 + "/" + x.getFullYear();
 	x1 = x1 + " - " + x.getHours() + ":" + ("0" + x.getMinutes()).substr(-2);
 	document.getElementById('ct').innerHTML = x1;
-	refreshtime();
-}();
+	//refreshtime();
+	let time = setTimeout(displaydate, 500);
+}
 
 function refreshtime() {
 	setTimeout(displaydate, 60*1000);

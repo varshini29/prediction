@@ -8,7 +8,7 @@ include ("dbconnect.php");
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 		
-		<title>Urban Drainage Monitoring</title>
+		<title>Drain 2</title>
 
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
@@ -74,7 +74,7 @@ include ("dbconnect.php");
 			<!--map to put here-->
 			<div class="hero" data-bg-image="images/drain1.png" ></div>
 			
-			<h2 style="padding:100px;color:white;font-size:32px;">Drain 2 Water Level Forecast</h2>
+			<h2 style="padding:150px;color:white;font-size:32px;">Drain 2 Water Level Forecast</h2>
 				<main class="main-content">
 				<div class="fullwidth-block">
                     <div class="forecast-table">
@@ -204,21 +204,8 @@ include ("dbconnect.php");
 									</form>
 		
 								</div>
-							
-							<!-- <div class="col-md-4">
-									<h2 class="section-title">Quick Links</h2>
-									<ul class="arrow-list">
-
-										<li><a href="#">Last 24 Hours Water Level in Drain 1, Drain 2, Drain 3</a></li>
-										<li><a href="#">Last week Water Level in Drain 1</a></li>
-										<li><a href="#">Last week Water Level in Drain 2</a></li>
-										<li><a href="#">Last week Water Level in Drain 3</a></li>
-										<li><a href="#">Magni dolores eos qui ratione voluptatem sequi</a></li>
-										<li><a href="#">Neque porro quisquam est qui dolorem ipsum quia</a></li>
-									</ul>
-								</div> -->
+						
 							</div>
-					<p class="colophon">Copyright 2014 Company name. Designed by Themezy. All rights reserved</p>
 				</div>
 			</footer> <!-- .site-footer -->
 		</div>

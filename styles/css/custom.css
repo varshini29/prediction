@@ -1,4 +1,7 @@
 /* Global */
+a:hover {
+    text-decoration: none;
+}
 
 .w-100 {
     width: 100% !important;
@@ -32,8 +35,36 @@
     padding: 0 !important;
 }
 
+.pb-3 {
+    padding-bottom: 3rem !important;
+}
+
+.pt-3 {
+    padding-top: 3rem !important;
+}
+
 .border-none {
     border: 0 !important;
+}
+
+.c-margin-auto {
+    display: block;
+    margin: 0 auto;
+    float: none !important;
+}
+
+.custom-bg-table {
+    background-color: #31333e;
+}
+
+.post:last-child {
+    border-bottom: none;
+}
+
+/* Tables */
+.font-danger-bold {
+    color: #e81c30;
+    font-weight: bold;
 }
 
 /* Last 24 hours (last24.php) */
@@ -43,6 +74,12 @@ table.forecast-table {
     overflow: hidden;
     border-radius: 10px;
     margin-right: 3rem;
+}
+
+
+/* Drain1.php */
+section#drain1 .forecast-table .forecast-content > div {
+    margin-bottom: 8px;
 }
 
 /* Index */
