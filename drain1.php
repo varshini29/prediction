@@ -76,10 +76,16 @@ include ("dbconnect.php");
 			</div> <!-- .site-header -->
 
 			<!--map to put here-->
-			<div class="hero" data-bg-image="images/drain1.png"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="hero m-0 w-100" data-bg-image="images/drain1.png"></div>
+					</div>
+				</div>
+			</div>
 			
 			<div class="container">
-				<div class="col-lg-12 py-4">
+				<div class="col-lg-12 py-4 px-0">
 					<h2 class="m-0" style="color:white;font-size:32px;">Drain 1 Water Level Forecast</h2>
 				</div>
 			</div>
@@ -139,20 +145,12 @@ include ("dbconnect.php");
 										<div class="forecast-header">
 											<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Depth(ft)</div>
 										</div> <!-- .forecast-header -->
-										<div id="parent-forecast" class="forecast-content">
-											<!-- <div id="depth"></div></br> -->
-												<script>
-												let parent = document.getElementByid('parent-forecast');
-												for (i=0; i<4; i++) {
-													parent.createElement()
+										<div id="depth-forecast" class="forecast-content">
+											<script>
+												for(var i = 0; i < 4; i++) {
+													document.getElementById("depth-forecast").innerHTML += '<div>3.0</div>';
 												}
-												/*var i;
-												var text="";
-												for(i=0;i<4;i++){
-													text += 3.0 + "<br>" + ;
-												}
-												document.getElementById("depth").innerHTML = text; */
-												</script>
+											</script>
 										</div>
 									</div>
 	
@@ -160,16 +158,12 @@ include ("dbconnect.php");
 										<div class="forecast-header">
 											<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Drainage Capacity(cfs)</div>
 										</div> <!-- .forecast-header -->
-										<div class="forecast-content">
-											<span id="cap"></span></br>
-												<script>
-												var i;
-												var text="";
-												for(i=0;i<4;i++){
-													text += 64.9 + "<br>";
+										<div id="drainage-cap-forecast" class="forecast-content">
+										<script>
+												for(var i = 0; i < 4; i++) {
+													document.getElementById("drainage-cap-forecast").innerHTML += '<div>64.9</div>';
 												}
-												document.getElementById("cap").innerHTML = text;
-												</script>
+											</script>
 										</div>
 									</div>
 	

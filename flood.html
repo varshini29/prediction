@@ -24,8 +24,8 @@
 	</head>
 
 
-	<body>
-		
+<body>	
+	<section id="flood">
 		<div class="site-content">
 			<div class="site-header">
 				<div class="container">
@@ -58,7 +58,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 c-margin-auto pb-3">
-						<canvas id="line-chart" width="120" height="30"></canvas>
+						<div class="position-relative">
+							<canvas id="line-chart" width="120" height="30"></canvas>
+						</div>
 				</div>
 			</div>
 
@@ -220,6 +222,8 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/app.js"></script>
 		
+
+</section>
 </body>
 	<script>
         new Chart(document.getElementById("line-chart"), {
@@ -245,6 +249,8 @@
 						]
 					},
 					options: {
+						responsive: true,
+						maintainAspectRatio: true,
 						title: {
 							display: true,
 							text: 'Rainfall intensity per mm against water level in ft',

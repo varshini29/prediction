@@ -57,6 +57,16 @@ a:hover {
     background-color: #31333e;
 }
 
+.custom-bg-button {
+    background-color: #009ad8;
+    color: #FFF;
+}
+
+.custom-bg-button:hover {
+    background-color: #005c82;
+    color: #FFF;
+}
+
 .post:last-child {
     border-bottom: none;
 }
@@ -80,6 +90,13 @@ table.forecast-table {
 /* Drain1.php */
 section#drain1 .forecast-table .forecast-content > div {
     margin-bottom: 8px;
+}
+
+/* flood.html */
+section#flood table > thead {
+    background-color: #1e2027;
+    color: white;
+    text-align: center;
 }
 
 /* Index */
@@ -134,10 +151,6 @@ main#index .forecast-table .forecast .degree > div.num {
     font-weight: bold;
     font-size: 25px;
     color: #FFF;
-}
-
-main#index .forecast-table .forecast a > button {
-    padding: 5px 15px 5px 15px;
 }
 
 /* Media Queries */
