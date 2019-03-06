@@ -294,14 +294,18 @@ class Calendar {
                 depth = 4.79;
             }
             
-            const table = document.getElementById('t-d' + i);
-            this.filterDrains(result, i).map((value) => {
-                $('<tr class="num">').appendTo(table)
-                    .append($('<td>').text(value.forecast_time))
-                    .append($('<td>').text(value.rainfall_intensity))
-                    .append($('<td>').text(depth))
-                    .append($('<td>').text(value.water_level));
-            })
+            if (result.length) {
+                const table = document.getElementById('t-d' + i);
+                this.filterDrains(result, i).map((value) => {
+                    $('<tr class="num">').appendTo(table)
+                        .append($('<td>').text(value.forecast_time))
+                        .append($('<td>').text(value.rainfall_intensity))
+                        .append($('<td>').text(depth))
+                        .append($('<td>').text(value.water_level));
+                })
+            } else {
+                console.log('Array Null');
+            }
         }
     }
 
@@ -321,8 +325,6 @@ class Calendar {
        });
        return [times, rainfalls, waterLevels];
     }
-
-
 
     /**
      * @description Filtering drains from array of drains based on drain id
@@ -345,7 +347,7 @@ class Calendar {
         
         jQuery.ajax({
             type: "POST",
-            url: 'testjsphp.php',
+            url: 'calendar.php',
             dataType: 'json',
             data: {
                 arguments: [date]

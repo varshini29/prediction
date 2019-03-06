@@ -94,20 +94,32 @@
 
 		<div class="container py-4">
 			<div class="row">
-				<div class="col-lg-12">
-					<main id="index" class="main-content">
+				<main id="index" class="main-content">
+					<div class="col-lg-8">
 						<div class="forecast-table forecast-container position-relative m-0 h-100">
 							<div class="forecast">
 								<div class="forecast-header">
 									<div class="day" style="font-weight: bold;color:white;font-size: 22px;">Today</div>
 								</div>
-								<div class="degree">
-									<div class="num" id="ct"></div>
-									<script type="text/javascript">displayDate('ct');</script>
+								<div class="degree" id="ct">
 								</div>
+								<script type="text/javascript">displayDate('ct');</script>
+								<!-- <div class="degree">
+								</div> -->
 							</div>
 
 							<div class="forecast">
+								<div class="forecast-header">
+									<div class="day" style="font-weight: bold;color:white;font-size: 22px;">Maquette</div>
+								</div>
+								<div class="forecast-content">
+									<span><img src="images/icon-umberella@2x.png" width="20px" height="20px" alt="">Rainfall Intensity: 8.3mm</span></br>
+									<span><img src="images/flow_rate_icon.png" width="40px" height="40px" alt="">Flow Rate: 7.6xm/s</span></br>
+									<span><img src="images/water-level.png" width="25px" height="25px" alt="">Water Level: 13xm</span>
+								</div>
+							</div>
+
+							<!-- <div class="forecast">
 								<div class="forecast-header">
 									<div class="day" style="font-weight: bold;color:white;font-size: 22px;">Drain 1</div>
 								</div> 
@@ -121,9 +133,9 @@
 									<a href="drain1.php"><button class="btn custom-bg-button rounded-pill">View Forecast</button></a>
 								</div>
 
-							</div>
+							</div> -->
 
-							<div class="forecast">
+							<!-- <div class="forecast">
 								<div class="forecast-header">
 									<div class="day" style="font-weight: bold;color:white;font-size: 22px;">Drain 2</div>
 								</div>
@@ -135,8 +147,9 @@
 								<div class="forecast-header">
 									<a href="drain2.html"><button class="btn custom-bg-button rounded-pill">View Forecast</button></a>
 								</div>
-							</div>
-							<div class="forecast">
+							</div> -->
+
+							<!-- <div class="forecast">
 								<div class="forecast-header">
 									<div class="day" style="font-weight: bold;color:white;font-size: 22px;">Drain 3</div>
 								</div>
@@ -148,18 +161,35 @@
 								<div class="forecast-header">
 									<a href="drain3.html"><button class="btn custom-bg-button rounded-pill">View Forecast</button></a>
 								</div>
-							</div>
+							</div> -->
 							
 						</div>
-					</main>
-				</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="forecast-table forecast-container position-relative m-0 h-100">
+							<div class="forecast">
+								<div class="forecast-header">
+									<div class="day" style="font-weight: bold;color:white;font-size: 22px;">Drains Forecast</div>
+								</div>
+								<div class="forecast-content forecast-drains">
+									<a href="drain1.php"><button class="btn custom-bg-button rounded-pill">Drain 1</button></a>
+									<a href="drain2.php"><button class="btn custom-bg-button rounded-pill">Drain 2</button></a>
+									<a href="drain3.php"><button class="btn custom-bg-button rounded-pill">Drain 3</button></a>
+							 	</div>
+							 </div>
+						</div>
+					</div>
+				</main>
 			</div>
 		</div>
 
 		<footer class="site-footer">
-			<div class="container">
-				
-				<p class="colophon">Copyright 2019 University of Mauritius. All rights reserved</p>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12 my-2">
+						<p class="m-0 text-center">&copy; 2019 University of Mauritius. All rights reserved</p>
+					</div>
+				</div>
 			</div>
 		</footer> <!-- .site-footer -->
 	</div>

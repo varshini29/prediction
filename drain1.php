@@ -186,7 +186,7 @@ include ("dbconnect.php");
 							</div>
 						</div>
 					</div>
-					<p>The table above do 4 hours prediction of water level in feet based on rainfall intensity in mm.  Drainage capacity  indicates the amount of liquid that can be discharged at the open channel end. </p>
+					<p class="mt-4 mb-0">The table above do 4 hours prediction of water level in feet based on rainfall intensity in mm.  Drainage capacity  indicates the amount of liquid that can be discharged at the open channel end. </p>
 				</div>
 			</section>
 				

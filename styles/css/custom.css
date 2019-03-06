@@ -163,8 +163,13 @@ main#index .forecast-table .today {
 main#index .forecast-table .forecast .degree {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 100%;
+    justify-content: space-around;
+    text-align: center;
+    height: 148.31px;
+    max-height: 148.31px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
 }
 
 main#index .forecast-table .forecast .degree > h1 {
@@ -189,6 +194,24 @@ main#index .forecast-table .forecast .degree > div.num {
     font-weight: bold;
     font-size: 25px;
     color: #FFF;
+}
+
+main#index .forecast-table .forecast .forecast-content.forecast-drains {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 148.31px;
+}
+
+main#index .forecast-table .forecast .forecast-content.forecast-drains a button {
+    width: 100%;
+}
+
+main#index .forecast-table .forecast .forecast-content.forecast-drains a {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 50%;
 }
 
 /* Media Queries */
