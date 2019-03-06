@@ -1984,6 +1984,11 @@ form input[type="reset"] {
   padding: 10px;
   text-align: center;
   font-weight: 400;
+  /* Additional */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 62px;
 }
 
 .forecast-container .forecast .forecast-icon {

@@ -59,14 +59,14 @@
 				<div class="row">
 					<div class="col-lg-4">
 						<div class="position-relative">
-							<canvas id="line-chart" width="120" height="30"></canvas>
+							<canvas id="flood-drain1"></canvas>
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<canvas id="line-chart" width="120" height="30"></canvas>
+						<canvas id="flood-drain2"></canvas>
 					</div>
 					<div class="col-lg-4">
-						<canvas id="line-chart" width="120" height="30"></canvas>
+						<canvas id="flood-drain3"></canvas>
 					</div>
 					<!-- <div class="col-md-10 c-margin-auto pb-3">
 						<div class="position-relative">
@@ -279,28 +279,22 @@
 </section>
 </body>
 	<script>
-        new Chart(document.getElementById("line-chart"), {
+        new Chart(document.getElementById("flood-drain1"), {
 					type: 'line',
 					data: {
-						labels: [64.9,64.9,64.9,64.9,64.9],
+						labels: [20,25,35,80,150],
 						datasets: [{ 
-								data: [16.616,20.77,29.079,66.466,124.623],
-								label:"Drain 1",
+								data: [64.9,64.9,64.9,64.9,64.9],
+								label:"Drainage Capacity",
 								borderColor: "rgba(255,99,132)",
 								fill: false,
 						
 							 	}, { 
-								data: [0.415,4.151,8.308,12.462,16.616,20.77,24.925,29.079,33.234,37.387,41.541,45.695,49.849,54.003,58.157,62.311],
-								label:"80 mm",
+								data: [16.616,20.77,29.079,66.466,124.623],
+								label:"Peak discharge",
 								borderColor: "rgba(0,255,255)",
 								fill: false
 							 	}
-							// }, { 
-							// 	data: [124.623,306.45,99.596],
-							// 	label:"150 mm",
-							// 	borderColor: "rgb(255,255,255)",
-							// 	fill: false
-							// }
 						]
 					},
 					options: {
@@ -313,7 +307,7 @@
 						},
 						legend: {
 								labels: {
-									fontSize: 16
+									fontSize: 12
 							}
 						}
 					}

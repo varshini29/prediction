@@ -110,8 +110,43 @@ function displayDate(id) {
 		s = "0" + s;
 	}
 
-	//let result = ''+ days[day]+ ' ' + months[month] + ' ' + d + ' ' + year + ' ' + h + ':' + m + ':' + s;
 	let result = ''+ days[day] + "<br/>" + months[month] + ', ' + d + ' ' + year + "<br/>" + h + ':' + m + ':' + s;
 	document.getElementById(id).innerHTML = result;
 	setTimeout('displayDate("'+id+'");','1000');
 }
+
+function generateChart(chart, times, rainfalls, waterlevels) {
+	var ctx = document.getElementById(chart).getContext('2d');
+	var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: times,
+			datasets: [
+			{
+				label: 'Rainfall Intensity',
+				data: rainfalls,
+				backgroundColor: 'transparent',
+				borderColor:'rgba(255,99,132)',
+				borderWidth: 3
+			},
+			{
+				label: 'Water Level',
+				data: waterlevels,
+				backgroundColor: 'transparent',
+				borderColor:'rgba(0,255,255)',
+				borderWidth: 3
+			}
+			]
+		},
+		options: {
+			scales: {scales: { 
+				yAxes: [{ beginAtZero: false }],
+				xAxes: [{ autoskip: true, maxTicketsLimit: 20 }]
+			}},
+			tooltips: { mode: 'index' },
+			responsive: true,
+			legend: { display: true, position: 'top', labels: { fontColor: 'rgb(255,255,255)', fontSize: 16 } }
+		}
+	})
+	return myChart;
+};

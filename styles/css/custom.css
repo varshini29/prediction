@@ -91,6 +91,10 @@ a:hover {
     text-align: center;
 }
 
+.custom-bg-table td {
+    text-align: center;
+}
+
 .banner-wrapper {
     background-color: #33394c;
     padding: 10px 20px;

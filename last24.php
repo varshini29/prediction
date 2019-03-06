@@ -40,7 +40,7 @@ function getData($drainid) {
 		<script type="text/javascript" src="js/Chart.bundle.min.js"></script>
 		
 		<script>
-			function test() {
+			function test24() {
 				console.log('Hello');
 			};
 
@@ -158,7 +158,7 @@ function getData($drainid) {
 								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 0 0 25px 0;">
 									<h2 class="entry-title w-100">Drain 1</h2>
 									<div class="post col-lg-6 p-0 border-none">
-										<table class="w-auto table table-bordered text-white custom-bg-table">
+										<table id="t-d1" class="w-auto table table-bordered text-white custom-bg-table">
 											<?php
 												getDrain1LastDay();
 							
@@ -229,7 +229,7 @@ function getData($drainid) {
 								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0 25px 0;">
 									<h2 class="w-100 entry-title">Drain 2</h2>
 									<div class="post col-lg-6 p-0 border-none">
-										<table class="w-auto table table-bordered text-white custom-bg-table">
+										<table id="t-d2" class="w-auto table table-bordered text-white custom-bg-table">
 											<?php
 												getDrain2LastDay();
 							
@@ -300,7 +300,7 @@ function getData($drainid) {
 								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0 25px 0;">
 									<h2 class="w-100 entry-title">Drain 3</h2>
 									<div class="post col-lg-6 p-0 border-none">
-										<table class="w-auto table table-bordered text-white custom-bg-table">
+										<table id="t-d3" class="w-auto table table-bordered text-white custom-bg-table">
 											<?php
 												getDrain3LastDay();
 							
@@ -326,6 +326,7 @@ function getData($drainid) {
 											if (mysqli_num_rows($result) > 0) {
 												while ($row = mysqli_fetch_assoc($result)) {
 											?>
+											<div></div>
 											<tr class="num" style="font-size:15px; color:white;">
 												<td><?php echo $row['forecast_time']?></td>
 												<td><?php echo $row['rainfall_intensity']?></td>

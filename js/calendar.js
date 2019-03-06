@@ -277,6 +277,63 @@ class Calendar {
     }
 
     /**
+     * @description Dynamically setting selected date data from SQL
+     * @param string result -> Array that was received from Ajax Request (PHP)
+     * @param int length -> Number of drains
+     * @return void 
+     */
+    setDataTable(result, length) {
+        $('.num').remove();
+        let depth;
+        for(let i = 1; i < length + 1; i++) {
+            if (i == 1) {
+                depth = 3.0;
+            } else if (i == 2) {
+                depth = 7.22;
+            } else {
+                depth = 4.79;
+            }
+            
+            const table = document.getElementById('t-d' + i);
+            this.filterDrains(result, i).map((value) => {
+                $('<tr class="num">').appendTo(table)
+                    .append($('<td>').text(value.forecast_time))
+                    .append($('<td>').text(value.rainfall_intensity))
+                    .append($('<td>').text(depth))
+                    .append($('<td>').text(value.water_level));
+            })
+        }
+    }
+
+    /**
+     * @description Extracting data (times, rainfalls, waterlevels) from the result of the AJAX Response PHP
+     * @param array result -> The response from the Ajax request
+     * @return array of arrays
+     */
+    extractData(result, drainid) {
+        let times = [];
+        let rainfalls = [];
+        let waterLevels = [];
+        this.filterDrains(result, drainid).map((value) => {
+            times.push(value.forecast_time);
+            rainfalls.push(value.rainfall_intensity);
+            waterLevels.push(value.water_level);
+       });
+       return [times, rainfalls, waterLevels];
+    }
+
+
+
+    /**
+     * @description Filtering drains from array of drains based on drain id
+     * @param array array -> Array of drains
+     * @param int query -> Drain id
+     */
+    filterDrains = (array, query) => {
+        return array.filter(value => value.drain_id == query)
+    };
+
+    /**
      * @description Getting selected value on user click
      */
     getSelectedDate() {
@@ -289,12 +346,18 @@ class Calendar {
         jQuery.ajax({
             type: "POST",
             url: 'testjsphp.php',
+            dataType: 'json',
             data: {
                 arguments: [date]
             },
             success: ((result) => {
                 this.setDynamicContent(date);
-                console.log(result);
+                this.setDataTable(result, 3);
+                for (let i = 1; i < 4; i++) {
+                    let string = 'chart-drain' + i;
+                    console.log(string);
+                    generateChart('chart-drain' + i, this.extractData(result, i)[0], this.extractData(result, i)[1],this.extractData(result, i)[2]);
+                }
             }),
             error: ((error) => {
                 console.error(error);
