@@ -10,7 +10,7 @@ include ("dbconnect.php");
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 		
 		<title>Drain 1</title>
-
+		<link rel="shortcut icon" href="images/logo.png">
 		<!-- Loading third party fonts -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
@@ -55,8 +55,8 @@ include ("dbconnect.php");
 					<a href="index.html" class="branding">
 						<img src="images/logo.png" alt="" class="logo">
 						<div class="logo-type">
-							<h1 class="site-title">University of Mauritius</h1>
-							<small class="site-description">Urban Drainage Monitoring</small>
+							<h1 class="site-title">Urban Drainage Monitoring</h1>
+							<small class="site-description">University of Mauritius</small>
 						</div>
 					</a>
 
@@ -86,7 +86,7 @@ include ("dbconnect.php");
 			
 			<div class="container">
 				<div class="col-lg-12 py-4 px-0">
-					<h2 class="m-0" style="color:white;font-size:32px;">Drain 1 Water Level Forecast</h2>
+					<h2 class="m-0 table-h-custom">Drain 1 Water Level Forecast</h2>
 				</div>
 			</div>
 
@@ -109,8 +109,8 @@ include ("dbconnect.php");
 	
 									?>
 	
-									<div class="forecast">
-										<div class="forecast-header">
+										<div class="forecast">
+											<div class="forecast-header">
 											<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Time (in hour)</div>
 											<div class="date" id="" style="text-align: center"></div><!--this is for display date and time will need this-->
 										</div>
@@ -169,11 +169,10 @@ include ("dbconnect.php");
 	
 									<div class="forecast">
 										<div class="forecast-header">
-											<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Water Level(ft)</div>
+											<div class="font-drain">Forecast Water Level Raise By(ft)</div>
 										</div> <!-- .forecast-header-->
-										<div class="forecast-content">
+										<div class="forecast-content" style="color:#48c0f0;font-weight: bold;">
 										<?php
-												
 												foreach($data as $object) {
 													echo "<div>" . $object["water_level"] . "</div>";
 												}
@@ -187,30 +186,14 @@ include ("dbconnect.php");
 							</div>
 						</div>
 					</div>
+					<p>The table above do 4 hours prediction of water level in feet based on rainfall intensity in mm.  Drainage capacity  indicates the amount of liquid that can be discharged at the open channel end. </p>
 				</div>
 			</section>
 				
 
 			<footer class="site-footer">
 					<div class="container">
-						<div class="row">
-								<div class="col-md-6 col-md-offset-1">
-										<h2 class="section-title">Contact us</h2>
-										
-										<form action="#" class="contact-form">
-											<div class="row">
-												<div class="col-md-6"><input type="text" placeholder="Your name..."></div>
-												<div class="col-md-6"><input type="text" placeholder="Email Addresss..."></div>
-											</div>
-											
-											<textarea name="" placeholder="Message..."></textarea>
-											<div class="text-right">
-												<input type="submit" placeholder="Send message">
-											</div>
-										</form>
-			
-									</div>
-							</div>
+					<p class="colophon">Copyright 2019 University of Mauritius. All rights reserved</p>
 				</div>
 			</footer> <!-- .site-footer -->
 		</div>

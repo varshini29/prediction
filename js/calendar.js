@@ -267,6 +267,16 @@ class Calendar {
     }
 
     /**
+     * @description Dynamically setting the data with innerHTML
+     * @param date 
+     * @return void
+     */
+    setDynamicContent(date) {
+        let heading = document.getElementById('__history-heading');
+        heading.innerHTML = date;
+    }
+
+    /**
      * @description Getting selected value on user click
      */
     getSelectedDate() {
@@ -283,7 +293,8 @@ class Calendar {
                 arguments: [date]
             },
             success: ((result) => {
-                alert(result);
+                this.setDynamicContent(date);
+                console.log(result);
             }),
             error: ((error) => {
                 console.error(error);

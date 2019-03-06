@@ -21,7 +21,6 @@
   content: '\0041';
 }
 .calendar {
-  height: 100%;
   width: 100%;
   box-sizing: border-box;
   user-select: none;

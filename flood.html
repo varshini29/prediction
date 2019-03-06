@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 		
 		<title>Flood Case Scenario</title>
-
+		<link rel="shortcut icon" href="images/logo.png">
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
 		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -32,8 +32,8 @@
 					<a href="index.html" class="branding">
 						<img src="images/logo.png" alt="" class="logo">
 						<div class="logo-type">
-							<h1 class="site-title">University of Mauritius</h1>
-							<small class="site-description">Urban Drainage Monitoring</small>
+							<h1 class="site-title">Urban Drainage Monitoring</h1>
+							<small class="site-description">University of Mauritius</small>
 						</div>
 					</a>
 
@@ -57,21 +57,32 @@
 				
 			<div class="container">
 				<div class="row">
-					<div class="col-md-10 c-margin-auto pb-3">
+					<div class="col-lg-4">
 						<div class="position-relative">
 							<canvas id="line-chart" width="120" height="30"></canvas>
 						</div>
+					</div>
+					<div class="col-lg-4">
+						<canvas id="line-chart" width="120" height="30"></canvas>
+					</div>
+					<div class="col-lg-4">
+						<canvas id="line-chart" width="120" height="30"></canvas>
+					</div>
+					<!-- <div class="col-md-10 c-margin-auto pb-3">
+						<div class="position-relative">
+							<canvas id="line-chart" width="120" height="30"></canvas>
+						</div>
+					</div> -->
 				</div>
-			</div>
 
 			<div class="row">
 				<div class="content col-md-12">
 					<div class="post">
-						<h2 class="entry-title">35 mm</h2>
+						<h2 class="entry-title">Drain 1</h2>
 						<table class="table table-bordered text-white custom-bg-table">
 							<thead>
 								<tr>
-									<th>Drain number</th>
+									<th>Rainfall Intensity (mm)</th>
 									<th>Peak discharge (cfs) </th>
 									<th>Drainage capacity (cfs)</th>	
 									<th>Depth(ft)</th>
@@ -81,7 +92,25 @@
 							</thead>
 
 							<tr>
-								<td>1</td>
+								<td>20</td>
+								<td>16.616</td>
+								<td>64.9</td>
+								<td>3.0</td>
+								<td>0.768</td>
+								<td>Not Overflow</td>
+							</tr>
+
+							<tr>
+								<td>25</td>
+								<td>20.77</td>
+								<td>64.9</td>
+								<td>3.0</td>
+								<td>0.959</td>
+								<td>Not Overflow</td>
+							</tr>
+
+							<tr>
+								<td>35</td>
 								<td>29.079</td>
 								<td>64.9</td>
 								<td>3.0</td>
@@ -90,41 +119,7 @@
 							</tr>
 
 							<tr class="font-danger-bold">
-								<td>2</td>
-								<td>71.505</td>
-								<td>70.79</td>
-								<td>7.22</td>
-								<td>7.307</td>
-								<td>Overflow</td>
-							</tr>
-
-							<tr>
-								<td>3</td>
-								<td>23.239</td>
-								<td>186.14</td>
-								<td>4.79</td>
-								<td>0.598</td>
-								<td>Not Overflow</td>
-							</tr>
-						</table>
-					</div>
-
-					<div class="post">
-						<h2 class="entry-title">80 mm</h2>
-						<table class="table table-bordered text-white custom-bg-table">
-							<thead>
-								<tr>
-									<th>Drain number</th>
-									<th>Peak discharge (cfs) </th>
-									<th>Drainage capacity (cfs)</th>	
-									<th>Depth(ft)</th>
-									<th>Water Level(ft)</th>
-									<th>Status</th>
-								</tr>
-							</thead>
-
-							<tr class="font-danger-bold">
-								<td>1</td>
+								<td>80</td>
 								<td>66.466</td>
 								<td>64.9</td>
 								<td>3.0</td>
@@ -133,31 +128,22 @@
 							</tr>
 
 							<tr class="font-danger-bold">
-								<td>2</td>
-								<td>163.44</td>
-								<td>70.79</td>
-								<td>7.22</td>
-								<td>16.702</td>
+								<td>150</td>
+								<td>124.623</td>
+								<td>64.9</td>
+								<td>3.0</td>
+								<td>5.757</td>
 								<td>Overflow</td>
-							</tr>
-
-							<tr>
-								<td>3</td>
-								<td>53.118</td>
-								<td>186.14</td>
-								<td>4.79</td>
-								<td>1.367</td>
-								<td>Not Overflow</td>
 							</tr>
 						</table>
 					</div>
 
 					<div class="post">
-						<h2 class="entry-title">150 mm</h2>
+						<h2 class="entry-title">Drain 2</h2>
 						<table class="table table-bordered text-white custom-bg-table">
 							<thead>
 								<tr>
-									<th>Drain number</th>
+									<th>Rainfall Intensity (mm)</th>
 									<th>Peak discharge (cfs) </th>
 									<th>Drainage capacity (cfs)</th>	
 									<th>Depth(ft)</th>
@@ -166,26 +152,105 @@
 								</tr>
 							</thead>
 
+							<tr>
+								<td>20</td>
+								<td>40.86</td>
+								<td>70.79</td>
+								<td>7.22</td>
+								<td>4.176</td>
+								<td>Not Overflow</td>
+							</tr>
+
+							<tr>
+								<td>25</td>
+								<td>51.075</td>
+								<td>70.79</td>
+								<td>7.22</td>
+								<td>5.219</td>
+								<td>Not Overflow</td>
+							</tr>
+
 							<tr class="font-danger-bold">
-								<td>1</td>
-								<td>124.623</td>
-								<td>64.9</td>
-								<td>3.0</td>
-								<td>5.757</td>
+								<td>35</td>
+								<td>71.505</td>
+								<td>70.79</td>
+								<td>7.22</td>
+								<td>7.307</td>
 								<td>Overflow</td>
 							</tr>
 
 							<tr class="font-danger-bold">
-								<td>2</td>
+								<td>80</td>
+								<td>163.44</td>
+								<td>70.79</td>
+								<td>7.22</td>
+								<td>16.702</td>
+								<td>Overflow</td>
+							</tr>
+
+							<tr class="font-danger-bold">
+								<td>150</td>
 								<td>306.45</td>
 								<td>70.79</td>
 								<td>7.22</td>
 								<td>31.316</td>
 								<td>Overflow</td>
 							</tr>
+						</table>
+					</div>
+
+					<div class="post">
+						<h2 class="entry-title">Drain 3</h2>
+						<table class="table table-bordered text-white custom-bg-table">
+							<thead>
+								<tr>
+									<th>Rainfall Intensity (mm)</th>
+									<th>Peak discharge (cfs) </th>
+									<th>Drainage capacity (cfs)</th>	
+									<th>Depth(ft)</th>
+									<th>Water Level(ft)</th>
+									<th>Status</th>
+								</tr>
+							</thead>
 
 							<tr>
-								<td>3</td>
+								<td>20</td>
+								<td>13.279</td>
+								<td>186.14</td>
+								<td>4.79</td>
+								<td>0.342</td>
+								<td>Not Overflow</td>
+							</tr>
+
+							<tr>
+								<td>25</td>
+								<td>16.6</td>
+								<td>186.14</td>
+								<td>4.79</td>
+								<td>0.427</td>
+								<td>Not Overflow</td>
+							</tr>
+
+							<tr>
+								<td>35</td>
+								<td>23.239</td>
+								<td>186.14</td>
+								<td>4.79</td>
+								<td>0.598</td>
+								<td>Not Overflow</td>
+							</tr>
+
+							<tr>
+								<td>80</td>
+								<td>53.118</td>
+								<td>186.14</td>
+								<td>4.79</td>
+								<td>1.367</td>
+								<td>Not Overflow</td>
+							</tr>
+
+							<tr>
+								<td>150</td>
 								<td>99.596</td>
 								<td>186.14</td>
 								<td>4.79</td>
@@ -200,22 +265,10 @@
 
 	<footer class="site-footer">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-1">
-					<h2 class="section-title">Contact us</h2>
-					<form action="#" class="contact-form">
-						<div class="row">
-							<div class="col-md-6"><input type="text" placeholder="Your name..."></div>
-							<div class="col-md-6"><input type="text" placeholder="Email Addresss..."></div>
-						</div>
-						<textarea name="" placeholder="Message..."></textarea>
-						<div class="text-right">
-							<input type="submit" placeholder="Send message">
-						</div>
-					</form>
-				</div>
-			</div>
+			<p class="colophon">Copyright 2019 University of Mauritius. All rights reserved</p>
+		</div>
 	</footer> <!-- .site-footer -->
+	</div>
 
 	<script type="text/javascript" src="js/Chart.bundle.min.js"></script>
 	<script src="js/jquery-1.11.1.min.js"></script>
@@ -229,23 +282,25 @@
         new Chart(document.getElementById("line-chart"), {
 					type: 'line',
 					data: {
-						labels: [35,80,150],
+						labels: [64.9,64.9,64.9,64.9,64.9],
 						datasets: [{ 
-								data: [1.343,3.07,5.757],
+								data: [16.616,20.77,29.079,66.466,124.623],
 								label:"Drain 1",
 								borderColor: "rgba(255,99,132)",
 								fill: false,
-							}, { 
-								data: [7.307,16.702,31.316],
-								label:"Drain 2",
+						
+							 	}, { 
+								data: [0.415,4.151,8.308,12.462,16.616,20.77,24.925,29.079,33.234,37.387,41.541,45.695,49.849,54.003,58.157,62.311],
+								label:"80 mm",
 								borderColor: "rgba(0,255,255)",
 								fill: false
-							}, { 
-								data: [0.598,1.367,2.563],
-								label:"Drain 3",
-								borderColor: "rgb(255,255,255)",
-								fill: false
-							}
+							 	}
+							// }, { 
+							// 	data: [124.623,306.45,99.596],
+							// 	label:"150 mm",
+							// 	borderColor: "rgb(255,255,255)",
+							// 	fill: false
+							// }
 						]
 					},
 					options: {
@@ -253,7 +308,7 @@
 						maintainAspectRatio: true,
 						title: {
 							display: true,
-							text: 'Rainfall intensity per mm against water level in ft',
+							text: 'Peak discharge against Drainage capacity',
 							fontSize: 18
 						},
 						legend: {

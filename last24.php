@@ -24,7 +24,7 @@ function getData($drainid) {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 		
 		<title>Historical Data</title>
-
+		<link rel="shortcut icon" href="images/logo.png">
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
 		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -32,7 +32,9 @@ function getData($drainid) {
 		<link rel="stylesheet" href="styles/css/custom.css">
 
 		<!-- Loading main css file -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="styles/css/custom.css">
 
 		<!-- Loading third party JS -->
 		<script type="text/javascript" src="js/Chart.bundle.min.js"></script>
@@ -110,8 +112,8 @@ function getData($drainid) {
 					<a href="index.html" class="branding">
 						<img src="images/logo.png" alt="" class="logo">
 						<div class="logo-type">
-							<h1 class="site-title">University of Mauritius</h1>
-							<small class="site-description">Urban Drainage Monitoring</small>
+							<h1 class="site-title">Urban Drainage Monitoring</h1>
+							<small class="site-description">University of Mauritius</small>
 						</div>
 					</a>
 
@@ -134,22 +136,29 @@ function getData($drainid) {
 			</div> <!-- .site-header -->
 
 			<main id="last24" class="main-content">
-				<div class="container">
-					<div class="breadcrumb">
-						<a href="index.html">Home</a>
-						<span>Last 24 Hours</span>
-					</div>
-				</div>
-                
-				<div class="fullwidth-block">
 					<div class="container">
 						<div class="row">
-						<h1>Last 24 Hours Data</h1>
+							<div class="col-lg-12 p-0">
+								<h1 id="__history-heading">Last 24 Hours Data</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6 p-0">
+								<div class="banner-wrapper">
+									<h2>Historical Data</h2>
+									<p id="__banner-text">Past history information are displayed. To view older history, click on the date you want to see in the calendar.</p>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div id='calendar-wrap' class='calendar-wrap'></div>
+							</div>
+						</div>
+						<div class="row">
 							<div class="content col-lg-12 p-0">
-								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0 25px 0;">
-									<h2 class="entry-title">Drain 1</h2>
+								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 0 0 25px 0;">
+									<h2 class="entry-title w-100">Drain 1</h2>
 									<div class="post col-lg-6 p-0 border-none">
-										<table class= "forecast-table">
+										<table class="w-auto table table-bordered text-white custom-bg-table">
 											<?php
 												getDrain1LastDay();
 							
@@ -159,12 +168,14 @@ function getData($drainid) {
 													$starting_day = getPreviousDays('1 day ago'); // 29/01/2019 14:48
 													$ending_day = getCurrentDate(); // 30/01/2019 14:48
 											?>
-											<tr class="day">
-												<th>Time(hour)</th>
-												<th>Rainfall Intensity(mm)</th>
-												<th>Depth(ft)</th>
-												<th>Water Level(ft)</th>
-											</tr>
+											<thead>
+												<tr class="day">
+													<th>Time(hour)</th>
+													<th>Rainfall Intensity(mm)</th>
+													<th>Depth(ft)</th>
+													<th>Water Level(ft)</th>
+												</tr>
+											</thead>
 											<?php
 								
 											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 1 AND status = 'inactive'";
@@ -216,9 +227,9 @@ function getData($drainid) {
 								</div>
 
 								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0 25px 0;">
-									<h2 class="entry-title">Drain 2</h2>
+									<h2 class="w-100 entry-title">Drain 2</h2>
 									<div class="post col-lg-6 p-0 border-none">
-										<table class= "forecast-table">
+										<table class="w-auto table table-bordered text-white custom-bg-table">
 											<?php
 												getDrain2LastDay();
 							
@@ -228,12 +239,14 @@ function getData($drainid) {
 													$starting_day = getPreviousDays('1 day ago'); // 29/01/2019 14:48
 													$ending_day = getCurrentDate(); // 30/01/2019 14:48
 											?>
-											<tr class="day">
-												<th>Time(hour)</th>
-												<th>Rainfall Intensity(mm)</th>
-												<th>Depth(ft)</th>
-												<th>Water Level(ft)</th>
-											</tr>
+											<thead>
+												<tr class="day">
+													<th>Time(hour)</th>
+													<th>Rainfall Intensity(mm)</th>
+													<th>Depth(ft)</th>
+													<th>Water Level(ft)</th>
+												</tr>
+											</thead>
 											<?php
 								
 											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 2 AND status = 'inactive'";
@@ -285,9 +298,9 @@ function getData($drainid) {
 								</div>
 
 								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0 25px 0;">
-									<h2 class="entry-title">Drain 3</h2>
+									<h2 class="w-100 entry-title">Drain 3</h2>
 									<div class="post col-lg-6 p-0 border-none">
-										<table class= "forecast-table">
+										<table class="w-auto table table-bordered text-white custom-bg-table">
 											<?php
 												getDrain3LastDay();
 							
@@ -297,12 +310,14 @@ function getData($drainid) {
 													$starting_day = getPreviousDays('1 day ago'); // 29/01/2019 14:48
 													$ending_day = getCurrentDate(); // 30/01/2019 14:48
 											?>
-											<tr class="day">
-												<th>Time(hour)</th>
-												<th>Rainfall Intensity(mm)</th>
-												<th>Depth(ft)</th>
-												<th>Water Level(ft)</th>
-											</tr>
+											<thead>
+												<tr class="day">
+													<th>Time(hour)</th>
+													<th>Rainfall Intensity(mm)</th>
+													<th>Depth(ft)</th>
+													<th>Water Level(ft)</th>
+												</tr>
+											</thead
 											<?php
 								
 											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 3 AND status = 'inactive'";
@@ -356,36 +371,15 @@ function getData($drainid) {
 								
 							</div>
 						</div>
+						</div>
 					</div>
-				</div>
+				
 			</main> <!-- .main-content -->
 
 			<footer class="site-footer">
 				<div class="container">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-1">
-							<h2 class="section-title">Contact us</h2>
-							<form action="#" class="contact-form">
-								<div class="row">
-									<div class="col-md-6"><input type="text" placeholder="Your name..."></div>
-									<div class="col-md-6"><input type="text" placeholder="Email Addresss..."></div>
-								</div>
-								<textarea name="" placeholder="Message..."></textarea>
-								<div class="text-right">
-									<input type="submit" placeholder="Send message">
-								</div>
-							</form>
-						</div>
-						<div class="col-md-4">
-							<!-- START OF: Calendar -->
-							<div class="sidebar col-md-3 col-md-offset-1">
-								<div id='calendar-wrap' class='calendar-wrap'></div>
-							</div>
-							<!-- END OF: Calendar -->
-						</div>
-							</div> 
-
-					</div>
+				<p class="colophon">Copyright 2019 University of Mauritius. All rights reserved</p>
+				</div>
 				</footer> <!-- .site-footer -->
 		</div>
 		
