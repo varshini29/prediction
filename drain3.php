@@ -155,7 +155,7 @@ include ("dbconnect.php");
 									<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Drainage Capacity(cfs)</div>
 								</div> <!-- .forecast-header -->
 								<div id="drainage-cap-forecast" class="forecast-content">
-								<script>//186.14
+								<script>
 									for(var i = 0; i < 4; i++) {
 										document.getElementById("drainage-cap-forecast").innerHTML += '<div>186.14</div>';
 									}
@@ -185,9 +185,13 @@ include ("dbconnect.php");
 </section> 
 
 			<footer class="site-footer">
-					<div class="container">
-						<p class="colophon">Copyright 2019 University of Mauritius. All rights reserved</p>	
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12 my-2">
+						<p class="m-0 text-center">&copy; 2019 University of Mauritius. All rights reserved</p>
+					</div>
 				</div>
+			</div>
 			</footer> <!-- .site-footer -->
 		</div>
 		

@@ -189,9 +189,13 @@ include ("dbconnect.php");
 			</section>
 
 			<footer class="site-footer">
-					<div class="container">
-						<p class="colophon">Copyright 2019 University of Mauritius. All rights reserved</p>			
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-12 my-2">
+						<p class="m-0 text-center">&copy; 2019 University of Mauritius. All rights reserved</p>
+						</div>
 				</div>
+			</div>
 			</footer> <!-- .site-footer -->
 		</div>
 		
