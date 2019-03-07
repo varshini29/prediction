@@ -279,38 +279,23 @@
 </section>
 </body>
 	<script>
-        new Chart(document.getElementById("flood-drain1"), {
-					type: 'line',
-					data: {
-						labels: [20,25,35,80,150],
-						datasets: [{ 
-								data: [64.9,64.9,64.9,64.9,64.9],
-								label:"Drainage Capacity",
-								borderColor: "rgba(255,99,132)",
-								fill: false,
-						
-							 	}, { 
-								data: [16.616,20.77,29.079,66.466,124.623],
-								label:"Peak discharge",
-								borderColor: "rgba(0,255,255)",
-								fill: false
-							 	}
-						]
-					},
-					options: {
-						responsive: true,
-						maintainAspectRatio: true,
-						title: {
-							display: true,
-							text: 'Peak discharge against Drainage capacity',
-							fontSize: 18
-						},
-						legend: {
-								labels: {
-									fontSize: 12
-							}
-						}
-					}
-				});
+		const data = [
+			[
+				[64.9,64.9,64.9,64.9,64.9],
+				[16.616,20.77,29.079,66.466,124.623]
+			],
+			[
+				[70.79, 70.79, 70.79, 70.79, 70.79],
+				[40.86, 51.075, 71.505, 163.44, 306.45]
+			],
+			[
+				[186.14, 186.14, 186.14, 186.14, 186.14],
+				[13.279, 16.6, 23.239, 53.118, 99.596]
+			],
+		]
+
+		for (let i = 1; i < data.length + 1; i++) {
+			floodChart('flood-drain' + i, [20,25,35,80,150], data[i-1][0], data[i-1][1]);
+		}
     </script>
 </html>

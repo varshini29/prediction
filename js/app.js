@@ -84,6 +84,10 @@ function refreshtime() {
 	setTimeout(displaydate, 60*1000);
 }
 
+/**
+ * @description Displaying current time in real time
+ * @param {string} id - HTML Element id
+ */
 function displayDate(id) {
 	var date = new Date();
 	let year = date.getFullYear();
@@ -115,6 +119,13 @@ function displayDate(id) {
 	setTimeout('displayDate("'+id+'");','1000');
 }
 
+/**
+ * @description Generating chart with forecast time, rainfalls and water levels
+ * @param {string} chart - The id of the chart
+ * @param {number[]} times - Forecast times of the drain
+ * @param {number[]} rainfalls - Rainfall intensities of the drain
+ * @param {number[]} waterlevels - Water levels of the drain
+ */
 function generateChart(chart, times, rainfalls, waterlevels) {
 	var ctx = document.getElementById(chart).getContext('2d');
 	var myChart = new Chart(ctx, {
@@ -149,4 +160,47 @@ function generateChart(chart, times, rainfalls, waterlevels) {
 		}
 	})
 	return myChart;
+};
+
+/**
+ * @description Generating flood chart
+ * @param {string} chartId - The id of the chart
+ * @param {number[]} labels - The labels of the chart
+ * @param {number[]} capacity - The drainage capacity of a specific drain
+ * @param {number[]} discharge - The peak discharge of a specific drain
+ */
+function floodChart(chartId, labels, capacity, discharge) {
+	let ctx = document.getElementById(chartId);
+	let chart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: labels,
+			datasets: [{
+				data: capacity,
+				label: "Drainage Capacity",
+				borderColor: "rgba(255,99,132)",
+				fill: false,
+			}, {
+				data: discharge,
+				label: "Peak Discharge",
+				borderColor: "rgba(0,255,255)",
+				fill: false
+			}]
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: true,
+			title: {
+				display: true,
+				text: "Peak Discharge against Discharge Capacity",
+				fontSize: 18
+			},
+			legend: {
+				labels: {
+					fontSize: 12
+				}
+			}
+		}
+	});
+	return chart;
 };

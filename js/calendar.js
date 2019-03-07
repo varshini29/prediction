@@ -278,9 +278,9 @@ class Calendar {
 
     /**
      * @description Dynamically setting selected date data from SQL
-     * @param string result -> Array that was received from Ajax Request (PHP)
-     * @param int length -> Number of drains
-     * @return void 
+     * @param {[]} result - Array that was received from Ajax Request (PHP)
+     * @param {number} length - Number of drains
+     * @return {void} 
      */
     setDataTable(result, length) {
         $('.num').remove();
@@ -311,8 +311,9 @@ class Calendar {
 
     /**
      * @description Extracting data (times, rainfalls, waterlevels) from the result of the AJAX Response PHP
-     * @param array result -> The response from the Ajax request
-     * @return array of arrays
+     * @param {[]} result - The response from the Ajax request
+     * @param {number} drainid - The specific drain
+     * @return {[]} array of arrays
      */
     extractData(result, drainid) {
         let times = [];
@@ -328,8 +329,9 @@ class Calendar {
 
     /**
      * @description Filtering drains from array of drains based on drain id
-     * @param array array -> Array of drains
-     * @param int query -> Drain id
+     * @param {[]} array - Array of drains
+     * @param {number} query - Drain id
+     * @returns {[]}
      */
     filterDrains = (array, query) => {
         return array.filter(value => value.drain_id == query)

@@ -40,10 +40,6 @@ function getData($drainid) {
 		<script type="text/javascript" src="js/Chart.bundle.min.js"></script>
 		
 		<script>
-			function test24() {
-				console.log('Hello');
-			};
-
 			/**
 			 * @description Chartjs
 			 * @param string chart (The id of the chart you are referencing to)
@@ -297,10 +293,10 @@ function getData($drainid) {
 
 								</div>
 
-								<div class="row w-100 ml-0" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0 25px 0;">
+								<div class="row w-100 ml-0" style="padding: 25px 0 25px 0;">
 									<h2 class="w-100 entry-title">Drain 3</h2>
 									<div class="post col-lg-6 p-0 border-none">
-										<table id="t-d3" class="w-auto table table-bordered text-white custom-bg-table">
+										<table id="t-d2" class="w-auto table table-bordered text-white custom-bg-table">
 											<?php
 												getDrain3LastDay();
 							
@@ -317,7 +313,7 @@ function getData($drainid) {
 													<th>Depth(ft)</th>
 													<th>Water Level(ft)</th>
 												</tr>
-											</thead
+											</thead>
 											<?php
 								
 											$query = "SELECT * FROM rainfall WHERE date BETWEEN '$starting_day' AND '$ending_day' AND drain_id = 3 AND status = 'inactive'";
@@ -326,7 +322,6 @@ function getData($drainid) {
 											if (mysqli_num_rows($result) > 0) {
 												while ($row = mysqli_fetch_assoc($result)) {
 											?>
-											<div></div>
 											<tr class="num" style="font-size:15px; color:white;">
 												<td><?php echo $row['forecast_time']?></td>
 												<td><?php echo $row['rainfall_intensity']?></td>
@@ -378,10 +373,14 @@ function getData($drainid) {
 			</main> <!-- .main-content -->
 
 			<footer class="site-footer">
-				<div class="container">
-				<p class="colophon">Copyright 2019 University of Mauritius. All rights reserved</p>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-12 my-2">
+							<p class="m-0 text-center">&copy; 2019 University of Mauritius. All rights reserved</p>
+						</div>
+					</div>
 				</div>
-				</footer> <!-- .site-footer -->
+			</footer> <!-- .site-footer -->
 		</div>
 		
 		<script src="js/jquery-1.11.1.min.js"></script>
