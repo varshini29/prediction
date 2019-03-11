@@ -296,7 +296,7 @@ function getData($drainid) {
 								<div class="row w-100 ml-0" style="padding: 25px 0 25px 0;">
 									<h2 class="w-100 entry-title">Drain 3</h2>
 									<div class="post col-lg-6 p-0 border-none">
-										<table id="t-d2" class="w-auto table table-bordered text-white custom-bg-table">
+										<table id="t-d3" class="w-auto table table-bordered text-white custom-bg-table">
 											<?php
 												getDrain3LastDay();
 							

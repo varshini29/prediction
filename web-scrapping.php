@@ -24,6 +24,10 @@
   
         $forecast_xpath = new DOMXPath($forecast_doc);
 
+        // If time_row empty (means, issues with website or no data or changes in structure)
+        // Then (FORGET ABOUT FORECAST.CO.UK)
+        // Now fetch forecast from another website
+
         $time_row = $forecast_xpath->query('//td[@class="hour"]');
         $precipitation_row = $forecast_xpath->query('//td[@class="precipitation"]');
         

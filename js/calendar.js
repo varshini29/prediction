@@ -365,7 +365,8 @@ class Calendar {
             }),
             error: ((error) => {
                 console.error(error);
-            })
+                alert('There is no data for this date.');
+            }),
         })
     }
 }
