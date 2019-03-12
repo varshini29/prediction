@@ -2,8 +2,6 @@
     include ('dbconnect.php');
     include ('readarff.php');
 
-    $html = file_get_contents('https://www.forecast.co.uk/mauritius/port-louis.html?v=per_hour'); //get the html returned from the following url
-    
     $drain1_prediction = file_get_contents('C:\Users\varsh\Documents\Applied-Computing\Dissertation\WEKA\ANN\drain1.txt');
     $drain2_prediction = file_get_contents('C:\Users\varsh\Documents\Applied-Computing\Dissertation\WEKA\ANN\drain2.txt');
     $drain3_prediction = file_get_contents('C:\Users\varsh\Documents\Applied-Computing\Dissertation\WEKA\ANN\drain3.txt');
@@ -14,73 +12,102 @@
 
     $drains_predictions = array($drain1_array, $drain2_array, $drain3_array);
 
-    $forecast_doc = new DOMDocument();
-
-    libxml_use_internal_errors(TRUE); //disable libxml errors
-
-    if(!empty($html)) {
-        $forecast_doc->loadHTML($html);
-        libxml_clear_errors(); //remove errors for yucky html
-  
-        $forecast_xpath = new DOMXPath($forecast_doc);
-
-        // If time_row empty (means, issues with website or no data or changes in structure)
-        // Then (FORGET ABOUT FORECAST.CO.UK)
-        // Now fetch forecast from another website
-
-        $time_row = $forecast_xpath->query('//td[@class="hour"]');
-        $precipitation_row = $forecast_xpath->query('//td[@class="precipitation"]');
+    /**
+     * Fetching data from API Endpoint of the website / Performing scrapping
+     * Creating an array of 4 objects (4 upcoming forecasts)
+     * Accounts for if one API Endpoint is down, use the second one
+     * Note: Priority-wise (Forecast.co.uk then yr.no)
+     * @return void
+     */
+    function fetchDataFromXPath() {
+        $forecastuk = file_get_contents('https://www.forecast.co.uk/mauritius/port-louis.html?v=per_hour');
+        $yr = file_get_contents('https://www.yr.no/place/Mauritius/Port_Louis/Cassis/hour_by_hour.html');
+    
+        $forecast_doc = new DOMDocument();
         
-        $time = getItems($time_row);
-        $precipitation = getItems($precipitation_row); 
-
-        $forecast_array = createForecastObject($time, $precipitation, 4);
-       
-        $allData_array = selectAllData();
-        $predictions = getAllPredictionValues(4, $drains_predictions);
-
-        $difference_array = array_udiff($allData_array, $forecast_array,
-            function ($obj_a, $obj_b) {
-                return strcmp($obj_a->time, $obj_b->time);
-            }
-        );
-     
-        print_r($difference_array);
-
-       foreach($difference_array as $object) {
-           updateForecast($object->time, $object->date);
-       }
+        libxml_use_internal_errors(TRUE); //disable libxml errors
+    
+        $forecast_array = array();
+    
+        if(!empty($forecastuk)) {
+            $forecast_doc->loadHTML($forecastuk);
+            libxml_clear_errors();
         
-        $count = 0;
-        for($i = 0; $i < 4; $i++) { //forecast array
-            if (isDataExists($forecast_array[$i]->time, $forecast_array[$i]->date)) {
-                echo "Data already exists!";
-                print_r($forecast_array[$i]);
-                echo "<br/>";
-                updateIntensity($forecast_array[$i]->precipitation, $forecast_array[$i]->time, $forecast_array[$i]->date);
-               
-                for($j = 1; $j < 4; $j++) {
-                    updateWaterLevel($predictions[$count], $forecast_array[$i]->time, $forecast_array[$i]->date, $j);
-                    $count++;
-                }
-            } else {
-                for($j = 0; $j < 3; $j++) {
-                    insertSQL($forecast_array[$i], $j + 1);
-                    $count++;
-                }
-            }
+            $forecast_xpath = new DOMXPath($forecast_doc);
+        
+            $time_row = $forecast_xpath->query('//td[@class="hour"]');
+            $precipitation_row = $forecast_xpath->query('//td[@class="precipitation"]');
+        
+            $time = getItems($time_row, 1, 4);
+            $precipitation = getItems($precipitation_row, 1, 4);
+            $forecast_array = createForecastObject($time, $precipitation, 4);
+            return $forecast_array;
+        
+        } else {
+            $forecast_doc->loadHTML($yr);
+            libxml_clear_errors();
+        
+            $forecast_xpath = new DOMXPath($forecast_doc);
+        
+            $time_row = $forecast_xpath->query('//td[@scope="row"]//strong');
+            $precipitation_row = $forecast_xpath->query('//td[@class="precipitation"]');
+        
+            $time = getItems($time_row, 0, 4);
+            $precipitation = getItems($precipitation_row, 0, 4);
+            $forecast_array = createForecastObject($time, $precipitation, 4);
+            return $forecast_array;
         }
     }
+
+    $forecast_array = fetchDataFromXPath(); // Fetching data from API Endpoint (Upcoming 4 forecast)
+    $allData_array = selectAllData(); //select all data from db (active or inactive)
+    $predictions = getAllPredictionValues(4, $drains_predictions); //arff data
+
+    //compare data exist in db to new forecast data next hour 
+    $difference_array = array_udiff($allData_array, $forecast_array,
+        function ($obj_a, $obj_b) {
+            return strcmp($obj_a->time, $obj_b->time);
+        }
+    );
+ 
+    print_r($difference_array);
+
+    // Update the time and rainfall in case there is a change on fcuk per hour
+    foreach($difference_array as $object) {
+       updateForecast($object->time, $object->date);
+    }
+
+   $count = 0;
+   for($i = 0; $i < 4; $i++) { //forecast array
+       if (isDataExists($forecast_array[$i]->time, $forecast_array[$i]->date)) {
+           echo "Data already exists!";
+           print_r($forecast_array[$i]);
+           echo "<br/>";
+           updateIntensity($forecast_array[$i]->precipitation, $forecast_array[$i]->time, $forecast_array[$i]->date);
+          
+           for($j = 1; $j < 4; $j++) {
+               updateWaterLevel($predictions[$count], $forecast_array[$i]->time, $forecast_array[$i]->date, $j);
+               $count++;
+           }
+       } else {
+           for($j = 0; $j < 3; $j++) {
+               insertSQL($forecast_array[$i], $j + 1);
+               $count++;
+           }
+       }
+   }
 
     /**
      * Getting items from XPath
      * Convert NodeListObject to Array and using Splice to only receive a specific quantity of values from the array
      * @param string $path
+     * @param int $offset
+     * @param int $length
      * @return array
      */
-    function getItems($path) {
+    function getItems($path, $offset, $length) {
         $array = iterator_to_array($path);
-        $items = array_splice($array, 1, 4);
+        $items = array_splice($array, $offset, $length);
         return $items;
     }
 
