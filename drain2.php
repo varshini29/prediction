@@ -170,9 +170,15 @@ include ("dbconnect.php");
 										<div class="forecast-header">
 											<div class="font-drain">Forecast Water Level Raise By(ft)</div>		
 									</div> <!-- .forecast-header-->
-									<div class="forecast-content" style="color:#48c0f0;font-weight: bold;">
+									<!-- <div class="forecast-content" style="color:#48c0f0;font-weight: bold;"> -->
 									<?php
 										foreach($data as $object) {
+											if($object["water_level"]>7.22){
+												echo '<div class="forecast-content" style="color:red;font-weight: bold;">';
+											}
+											else{
+												echo '<div class="forecast-content" style="color:#48c0f0;font-weight: bold;">';
+											}
 											echo "<div>" . $object["water_level"] . "</div>";
 										}	
 							

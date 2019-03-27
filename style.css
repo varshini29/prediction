@@ -1997,7 +1997,7 @@ form input[type="reset"] {
 
 
 .forecast-container .forecast .forecast-content {
-  padding: 10px 20px 10px;
+  /* padding: 10px 20px 10px; */
   text-align: center;
   font-weight: bold;
 }

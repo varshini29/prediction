@@ -1,10 +1,6 @@
 <?php
-
-$file = file_get_contents('C:\Users\varsh\Documents\Applied-Computing\Dissertation\WEKA\ANN\drain1.txt');
-
-
   /**
-   * Creating array of repeated values for Regular Expressions
+   * Creating array of repeated values using Regular Expressions
    * @param int $length, number of predicted values to extract
    * @return array
    */

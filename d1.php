@@ -43,6 +43,8 @@ function calculatePeakDischarge($rainfall) {
     //A=b*y
 }
 
+// The main piece of logic starts here
+
 $document = new Document("drain1");
 
 $document->addColumn(new NumericColumn('forecasted_rainfall_intensiy'));
@@ -55,6 +57,7 @@ $datasets = getForecast();
 print_r($datasets);
 foreach($datasets as $value) {
    // print_r($value->precipitation);
+
     $peak_discharge = calculatePeakDischarge($value->precipitation);
     $document->addData(['forecasted_rainfall_intensiy' => $value->precipitation, 'depth_of_drain' => 3.0, 'peak_discharge' => $peak_discharge, 'drainage_capacity' => 64.9]);
     //$document->addData(['depth_of_drain' => '3.0']);

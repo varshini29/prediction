@@ -13,11 +13,11 @@
     $drains_predictions = array($drain1_array, $drain2_array, $drain3_array);
 
     /**
-     * Fetching data from API Endpoint of the website / Performing scrapping
+     * Fetching data from URL  of the website / Performing scrapping
      * Creating an array of 4 objects (4 upcoming forecasts)
-     * Accounts for if one API Endpoint is down, use the second one
+     * Accounts for if one URL Endpoint is down, use the second one
      * Note: Priority-wise (Forecast.co.uk then yr.no)
-     * @return void
+     * @return array
      */
     function fetchDataFromXPath() {
         $forecastuk = file_get_contents('https://www.forecast.co.uk/mauritius/port-louis.html?v=per_hour');
@@ -40,7 +40,7 @@
         
             $time = getItems($time_row, 1, 4);
             $precipitation = getItems($precipitation_row, 1, 4);
-            $forecast_array = createForecastObject($time, $precipitation, 4);
+            $forecast_array = createForecastObject($time, $precipitation, 4);//store 4 new data of type object in an array
             return $forecast_array;
         
         } else {
@@ -59,11 +59,15 @@
         }
     }
 
+
+    // START - The main logic
     $forecast_array = fetchDataFromXPath(); // Fetching data from API Endpoint (Upcoming 4 forecast)
     $allData_array = selectAllData(); //select all data from db (active or inactive)
     $predictions = getAllPredictionValues(4, $drains_predictions); //arff data
 
     //compare data exist in db to new forecast data next hour 
+    // param1 - All the data from db
+    // param2 - The 4 new forecast objects
     $difference_array = array_udiff($allData_array, $forecast_array,
         function ($obj_a, $obj_b) {
             return strcmp($obj_a->time, $obj_b->time);
@@ -71,12 +75,21 @@
     );
  
     print_r($difference_array);
+    //array_udiff function always return only that is match
+    // All data from db - ..., 5:00, 6:00, 7:00
+    // 4 upcoming forecasts - 5:00, 6:00, 7:00, 8:00
+    // Difference - 5:00, 6:00, 7:00
 
     // Update the time and rainfall in case there is a change on fcuk per hour
     foreach($difference_array as $object) {
        updateForecast($object->time, $object->date);
     }
 
+
+    // If data already exists in db,
+    // Then update intensity and water level
+    // Else, if data does not exist
+    // Then, insert the new data in db
    $count = 0;
    for($i = 0; $i < 4; $i++) { //forecast array
        if (isDataExists($forecast_array[$i]->time, $forecast_array[$i]->date)) {
@@ -96,6 +109,7 @@
            }
        }
    }
+   // END - The main logic
 
     /**
      * Getting items from XPath
@@ -106,8 +120,8 @@
      * @return array
      */
     function getItems($path, $offset, $length) {
-        $array = iterator_to_array($path);
-        $items = array_splice($array, $offset, $length);
+        $array = iterator_to_array($path);//get data from fcuk
+        $items = array_splice($array, $offset, $length);//take data 1-4
         return $items;
     }
 
@@ -174,6 +188,10 @@
      */
     function isDataExists($ftime, $date) {
         global $conn;
+
+        // date is originally 25/03/2019 16:34
+        // But I only need the date and not the time
+        // To extract only date, I used str_split
         $newdate = str_split($date, 10)[0];
         $query = "SELECT forecast_time, date FROM rainfall WHERE forecast_time = '$ftime' AND date LIKE '%$newdate%'";
         $result = mysqli_query($conn, $query);

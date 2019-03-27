@@ -73,7 +73,7 @@ a:hover {
 
 /* Tables */
 .font-danger-bold {
-    color:	#F73131;
+    color:	rgb(230, 51, 51);
     font-weight: bold;
 }
 .font-drain{

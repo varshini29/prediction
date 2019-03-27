@@ -192,7 +192,7 @@ function floodChart(chartId, labels, capacity, discharge) {
 			maintainAspectRatio: true,
 			title: {
 				display: true,
-				text: "Peak Discharge against Discharge Capacity",
+				text: "Rainfall intensity against Depth & Water Level",
 				fontSize: 18
 			},
 			legend: {

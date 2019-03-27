@@ -171,9 +171,18 @@ include ("dbconnect.php");
 										<div class="forecast-header">
 											<div class="font-drain">Forecast Water Level Raise By(ft)</div>
 										</div> <!-- .forecast-header-->
-										<div class="forecast-content" style="color:#48c0f0;font-weight: bold;">
+										<!-- <div class="forecast-content" style="color:#48c0f0;font-weight: bold;"> -->
 										<?php
+											
 												foreach($data as $object) {
+													
+													if($object["water_level"]>3.0){
+														echo '<div class="forecast-content" style="color:red;font-weight: bold;">';
+													}
+													else{
+														echo '<div class="forecast-content" style="color:#48c0f0;font-weight: bold;">';
+													}
+													
 													echo "<div>" . $object["water_level"] . "</div>";
 												}
 											}
@@ -186,7 +195,7 @@ include ("dbconnect.php");
 							</div>
 						</div>
 					</div>
-					<p class="mt-4 mb-0">The table above do 4 hours prediction of water level in feet based on rainfall intensity in mm.  Drainage capacity  indicates the amount of liquid that can be discharged at the open channel end. </p>
+					<!-- <p class="mt-4 mb-0">The table above do 4 hours prediction of water level in feet based on rainfall intensity in mm.  Drainage capacity  indicates the amount of liquid that can be discharged at the open channel end. </p> -->
 				</div>
 			</section>
 				
