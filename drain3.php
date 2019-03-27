@@ -107,7 +107,7 @@ include ("dbconnect.php");
 
 							<div class="forecast">
 								<div class="forecast-header">
-									<div class="day">Time (in hour)</div>
+									<div class="day" style="font-weight: bold;color:white;font-size: 15px;">Time (in hour)</div>
 									<div class="date" id="" style="text-align: center"></div><!--this is for display date and time will need this-->
 							</div>
 							<div class="forecast-content">
