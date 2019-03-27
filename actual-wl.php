@@ -2,6 +2,8 @@
 
 include ('dbconnect.php');
 
+calculateActualWL();
+
 /**
  * Calculating next actual water level based on the previous water level and rainfall intensity
  * @return void

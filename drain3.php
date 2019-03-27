@@ -164,24 +164,56 @@ include ("dbconnect.php");
 						</div>
 
 						<div class="forecast">
-							<div class="forecast-header">
-								<div class="font-drain">Forecast Water Level Raise By(ft)</div>
-							</div> <!-- .forecast-header-->
-							<div class="forecast-content" style="color:#48c0f0;font-weight: bold;">
-							<?php
-								foreach($data as $object) {
-									if($object["water_level"]>4.79){
-										echo '<div class="forecast-content" style="color:red;font-weight: bold;">';
-									}
-									else{
-										echo '<div class="forecast-content" style="color:#48c0f0;font-weight: bold;">';
-									}
-									echo "<div>" . $object["water_level"] . "</div>";
-								}
-							}
-						
-								?>
-							</div>	
+										<div class="forecast-header">
+											<div class="font-drain">Forecast Water Level Raise By(ft)</div>
+										</div> <!-- .forecast-header-->
+										<div class="forecast-content">
+											<?php
+												foreach($data as $object) {
+													
+													if($object["water_level"]>3.0){
+														echo '<div style="color:red;font-weight: bold;">';
+														echo "<div>" . $object["water_level"] . "</div>";
+														echo "</div>";
+													}
+													else{
+														echo '<div  style="color:#48c0f0;font-weight: bold;">';
+														echo "<div>" . $object["water_level"] . "</div>";
+														echo "</div>";
+													}
+													
+													
+												}
+									
+											?>
+										</div>
+									</div>
+									<div class="forecast">
+										<div class="forecast-header">
+											<div class="font-drain">Actual Water Level(ft)</div>
+										</div> <!-- .forecast-header-->
+										<div class="forecast-content">
+											<?php
+												foreach($data as $object) {
+													
+													if($object["actual_water_level"]>3.0){
+														echo '<div style="color:red;font-weight: bold;">';
+														echo "<div>" . $object["actual_water_level"] . "</div>";
+														echo "</div>";
+													}
+													else{
+														echo '<div  style="color:#48c0f0;font-weight: bold;">';
+														echo "<div>" . $object["actual_water_level"] . "</div>";
+														echo "</div>";
+													}
+													
+													
+												}
+											}
+									
+											?>
+										</div>
+									</div>
 						</div>
 					</div>
 				</div>
